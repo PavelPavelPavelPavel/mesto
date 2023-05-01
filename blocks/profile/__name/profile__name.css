@@ -10,7 +10,6 @@
     line-height: 48px;
     max-width: 294px;
     grid-area: profile__name;
-    white-space: nowrap;
     text-overflow: ellipsis;
     white-space: nowrap;
     overflow: hidden;
