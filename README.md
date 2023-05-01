@@ -1,7 +1,7 @@
 # МЕСТО
 ## РОССИЯ.ОТДЫХ.MESTO.
 
-[![N|Solid](./images/logo.svg)](https://practicum.yandex.ru/)
+[![N|Solid](./images/logo.svg)](https://pavelpavelpavelpavel.github.io/mesto/)
 
 Соцсеть для тех кто любит путешествовать. Посмотри, зарегестрируйся, добавь фото с описанием. Profit. 
 ## Features
@@ -14,4 +14,4 @@
 - CSS
 - JS
 
-### GH Pages: ()
+### GH Pages: (https://pavelpavelpavelpavel.github.io/mesto/)
