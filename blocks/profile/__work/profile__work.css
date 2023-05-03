@@ -7,6 +7,7 @@
     font-weight: 400;
     font-size: 18px;
     line-height: 22px;
+    max-width: 294px;
     box-sizing: border-box;
     grid-area: profile__work;
     text-overflow: ellipsis;
@@ -16,13 +17,14 @@
 
 @media screen and (max-width: 668px) {
     .profile__work {
-    margin: 10px 0 0 0;
-    text-align: center;
+        margin: 10px 0 0 0;
+        text-align: center;
     }
 }
 
 @media screen and (max-width: 320px) {
     .profile__work {
+        max-width: 189px;
         margin: 0 0 0 40px;
         font-size: 14px;
         line-height: 17px;

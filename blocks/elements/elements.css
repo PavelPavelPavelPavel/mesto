@@ -23,7 +23,7 @@
 
 @media screen and (max-width: 630px) {
     .elements {
-        margin: 36px 19px 0 19px;
+        margin: 36px auto 0 auto;
         grid-template-columns: repeat(1, 282px);
     }
     }
