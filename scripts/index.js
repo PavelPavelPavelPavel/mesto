@@ -1,19 +1,21 @@
 // Находим форму в DOM
-let formElement = document.querySelector('.popup__form');
+const formElement = document.querySelector('.popup__form_edit_profile');
 // Находим поля формы в DOM
-let nameInput = document.querySelector('.popup__value_field_name');
-let jobInput = document.querySelector('.popup__value_field_job');
-// Находим кнопку открытия popup
-let openPopupButton = document.querySelector('.profile__button');
+const nameInput = document.querySelector('.popup__value_field_name');
+const jobInput = document.querySelector('.popup__value_field_job');
+// Находим кнопку открытия popup и редактирования галереи
+const openProfileButton = document.querySelector('.profile__button');
+const openCardsButton = document.querySelector('.profile__add-button');
  // Выбираем поля с именем и профессией
- let profileName = document.querySelector('.profile__name');
- let profileJob = document.querySelector('.profile__work');
+const profileName = document.querySelector('.profile__name');
+const profileJob = document.querySelector('.profile__work');
+//Находим popup
+const popup = document.querySelector('.popup');
 // Находим кнопку закрытия popup
 const closePopupButton = document.querySelector('.popup__button-close');
-// находим popup
-const popup = document.querySelector('.popup');
-// функция закрытия popup
-let popupToggle = (popup) => ('click', popup.classList.toggle('popup_opened'));
+// функция присвоения класса  popup
+const popupToggle = (popup) => ('click', popup.classList.toggle('popup_opened'));
+
 // функция открытия popup 
 function openPopup() {
     popupToggle(popup);
@@ -21,7 +23,9 @@ function openPopup() {
     jobInput.value = profileJob.textContent;
 }
 // открываем popup и подставояем значения из profileName и profileJob при помоще функции openPopup
-openPopupButton.addEventListener('click', openPopup);
+openProfileButton.addEventListener('click', openPopup);
+//ткрываем popup редактирования карточек
+openCardsButton.addEventListener('click', openPopup)
 //закрываем popup без сохранения
 closePopupButton.addEventListener('click', () => popupToggle(popup));
 // Обработчик «отправки» формы, хотя пока
@@ -33,16 +37,17 @@ function handleFormSubmit (evt) {
     //закрытие popup
     popupToggle(popup);
     // Получите значение полей jobInput и nameInput из свойства value
-    let nameInputValue = nameInput.value;
-    let jobInputValue = jobInput.value;
+    const nameInputValue = nameInput.value;
+    const jobInputValue = jobInput.value;
     // Вставьте новые значения с помощью textContent
     profileName.textContent = nameInputValue;
     profileJob.textContent = jobInputValue;
 }
-
 // Прикрепляем обработчик к форме:
 // он будет следить за событием “submit” - «отправка»
 formElement.addEventListener('submit', handleFormSubmit); 
+
+
 
 
 

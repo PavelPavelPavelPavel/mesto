@@ -74,10 +74,10 @@
       <footer class="footer">
         <p class="footer__copyright">© 2020 Mesto Russia</p>
       </footer>
-      <div class="popup">
+      <div class="popup popup_edit_form">
         <div class="popup__container">
           <button aria-label="Кнопка закрытия попапа" type="button" class="popup__button-close"></button>
-          <form name="profile" class="popup__form">
+          <form name="profile" class="popup__form popup__form_edit_profile">
             <h2 class="popup__title">Редактировать профиль</h2>
             <fieldset class="popup__input-wrapper">
               <input type="text" name="name" class="popup__value popup__value_field_name" placeholder="Name" />
@@ -85,6 +85,24 @@
               <button type="submit" class="popup__button">Сохранить</button>
             </fieldset>
           </form>
+        </div>
+      </div>
+      <div class="popup popup_edit_cards">
+        <div class="popup__container">
+          <button aria-label="Кнопка закрытия попапа" type="button" class="popup__button-close"></button>
+          <form name="profile" class="popup__form popup__form_edit_cards">
+            <h2 class="popup__title">Новое место</h2>
+            <fieldset class="popup__input-wrapper">
+              <input type="text" name="place" class="popup__value popup__value_field_place" placeholder="Place" />
+              <input type="text" name="URL" class="popup__value popup__value_field_url" placeholder="URL" />
+              <button type="submit" class="popup__button">Создать</button>
+            </fieldset>
+            </form>
+        </div>
+      </div>
+      <div class="popup popup_edit_img">
+        <div class="popup__container">
+          <button aria-label="Кнопка закрытия попапа" type="button" class="popup__button-close"></button>
         </div>
       </div>
     </div>

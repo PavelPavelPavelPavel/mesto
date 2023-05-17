@@ -27,8 +27,15 @@
 @import url(../blocks/popup/__value/popup__value.css);
 @import url(../blocks/popup/__value/_field/popup__value_field_job.css);
 @import url(../blocks/popup/__value/_field/popup__value_field_name.css);
+@import url(../blocks/popup/__value/_field/popup__value_field_place.css);
+@import url(../blocks/popup/__value/_field/popup__value_field_url.css);
 @import url(../blocks/popup/__title/popup__title.css);
 @import url(../blocks/popup/__button/popup__button.css);
 @import url(../blocks/popup/__button-close/popup__button-close.css);
 @import url(../blocks/popup/__input-wrapper/popup__input-wrapper.css);
 @import url(../blocks/popup/__form/popup__form.css);
+@import url(../blocks/popup/__form/_edit/popup__form_edit_cards.css);
+@import url(../blocks/popup/__form/_edit/popup__form_edit_profile.css);
+@import url(../blocks/popup/_edit/popup_edit_cards.css);
+@import url(../blocks/popup/_edit/popup_edit_form.css);
+@import url(../blocks/popup/_edit/popup_edit_img.css);
