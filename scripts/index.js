@@ -9,25 +9,28 @@ const openCardsButton = document.querySelector('.profile__add-button');
  // Выбираем поля с именем и профессией
 const profileName = document.querySelector('.profile__name');
 const profileJob = document.querySelector('.profile__work');
-//Находим popup
+//Находим popups
 const popup = document.querySelector('.popup');
+const popupEditForm = document.querySelector('.popup_edit_form');
+//const popupEditCards = document.querySelector('.popup_edit_cards');
+//const popupEditImg = document.querySelector('.popup_edit_img');
 // Находим кнопку закрытия popup
 const closePopupButton = document.querySelector('.popup__button-close');
 // функция присвоения класса  popup
-const popupToggle = (popup) => ('click', popup.classList.toggle('popup_opened'));
+const popupToggle = (value) => ('click', value.classList.toggle('popup_opened'));
 
 // функция открытия popup 
 function openPopup() {
-    popupToggle(popup);
+    popupToggle(popupEditForm);
     nameInput.value = profileName.textContent;
     jobInput.value = profileJob.textContent;
 }
 // открываем popup и подставояем значения из profileName и profileJob при помоще функции openPopup
 openProfileButton.addEventListener('click', openPopup);
-//ткрываем popup редактирования карточек
-openCardsButton.addEventListener('click', openPopup)
+//открываем popup редактирования карточек
+//openCardsButton.addEventListener('click', openPopup)
 //закрываем popup без сохранения
-closePopupButton.addEventListener('click', () => popupToggle(popup));
+closePopupButton.addEventListener('click', () => popupToggle(popupEditForm));
 // Обработчик «отправки» формы, хотя пока
 // она никуда отправляться не будет
 function handleFormSubmit (evt) {
@@ -35,7 +38,7 @@ function handleFormSubmit (evt) {
                                                 // Так мы можем определить свою логику отправки.
                                                 // О том, как это делать, расскажем позже.
     //закрытие popup
-    popupToggle(popup);
+    popupToggle(popupEditForm);
     // Получите значение полей jobInput и nameInput из свойства value
     const nameInputValue = nameInput.value;
     const jobInputValue = jobInput.value;
@@ -47,6 +50,7 @@ function handleFormSubmit (evt) {
 // он будет следить за событием “submit” - «отправка»
 formElement.addEventListener('submit', handleFormSubmit); 
 
+console.log(popup)
 
 
 
