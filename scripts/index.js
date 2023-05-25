@@ -1,6 +1,9 @@
 // Находим форму в DOM
 const formElementProfile = document.querySelector('.popup__form_edit_profile');
 const formElementCard = document.querySelector('.popup__form_edit_cards');
+//находим popup__img
+const popupImg = document.querySelector('.popup__img');
+console.log(popupImg);
 // Находим поля формы в DOM
 const nameInput = document.querySelector('.popup__value_field_name');
 const jobInput = document.querySelector('.popup__value_field_job');
