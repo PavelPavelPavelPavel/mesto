@@ -52,18 +52,22 @@
             <h2 class="popup__title">Новое место</h2>
             <fieldset class="popup__input-wrapper">
               <input type="text" name="place" class="popup__value popup__value_field_place" placeholder="Place" />
-              <input type="text" name="URL" class="popup__value popup__value_field_url" placeholder="URL" />
+              <input type="url" name="URL" class="popup__value popup__value_field_url" placeholder="URL" />
               <button type="submit" class="popup__button">Создать</button>
             </fieldset>
             </form>
         </div>
       </div>
-      <!--div class="popup popup_edit_img">
+      <div class="popup popup_edit_img">
         <div class="popup__container">
           <button aria-label="Кнопка закрытия попапа" type="button" class="popup__button-close"></button>
+          <figure>
+            <img src="" alt="" class="popup__img">
+            <figcaption class="popup__caption"></figcaption>
+          </figure>
         </div>
       </div>
-    </div-->
+    </div>
     <template id='template'>
             <article class="element">
             <button type="button" class="element__button-delete"></button>

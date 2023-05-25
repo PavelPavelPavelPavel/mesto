@@ -56,8 +56,6 @@ for (let i = 0; i < closePopupButton.length; i++) {
   closePopupButton[i].addEventListener('click', function() {
     if (closePopupButton[i] === closePopupButton[1]) {
       popupToggle(popupEditCards);
-      placeInput.value = '';
-      urlInput.value = '';
     } else {
       popupToggle(popupEditForm)
     }
@@ -78,28 +76,20 @@ function handleFormSubmit (evt) {
     // Вставьте новые значения с помощью textContent
     profileName.textContent = nameInputValue;
     profileJob.textContent = jobInputValue;
-}
+};
 //форма карточек
 function handleFormCardSubmit (evt) {
     evt.preventDefault();
-
+    //массив со значениями полей для новой карточки
+    const cardValue = 
+  {
+    name: placeInput.value,
+    link: urlInput.value,
+  };
+//закрываем popupCards
     popupToggle(popupEditCards);
-    const renderCard = () => {
-      //копируем содержимое карточки для каждого элемента массива
-      const cardElement = templateCards.cloneNode(true);
-      //получаем значения верстки элементов из template
-      cardElement.querySelector('.element');
-      //вешаем слушатель на кнопку удаления
-      cardElement.querySelector('.element__button-delete').addEventListener('click', deleteCardButton);
-      cardElement.querySelector('.element__img');
-      cardElement.querySelector('.element__wrapper');
-      cardElement.querySelector('.element__title');
-      //вешаем слушатель на кнопку лайка
-      cardElement.querySelectorAll('.element__button-like').addEventListener('click', likeCardButton);
-      elements.append(cardElement);
-   }
-    
-};
+    renderCard(cardValue);
+    };
 // Прикрепляем обработчик к форме:
 // он будет следить за событием “submit” - «отправка»
 formElementProfile.addEventListener('submit', handleFormSubmit); 
@@ -151,12 +141,14 @@ const initialCards = [
      cardElement.querySelector('.element__title').textContent = card.name;
      //вешаем слушатель на кнопку лайка
      cardElement.querySelector('.element__button-like').addEventListener('click', likeCardButton);
-     elements.append(cardElement);
-  }
+     elements.prepend(cardElement);
+
+  };
 //добавления карточек при загрузке страницы
 initialCards.forEach((item) => {
   renderCard(item)  
 });
+
 
 
 
