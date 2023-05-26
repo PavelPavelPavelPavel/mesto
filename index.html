@@ -1,81 +1,82 @@
 <!DOCTYPE html>
 <html lang="ru">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
-    <title>Место</title>
-    <link rel="stylesheet" href="./pages/index.css" />
-  </head>
-  <body class="main">
-    <div class="page">
-      <header class="header">
-        <img src="./images/logo.svg" alt="Место" class="header__logo" />
-      </header>
-      <main class="content">
-        <section class="profile">
-          <div class="profile__info">
-            <div class="profile__avatar">
-              <img src="./images/avatar-photo.jpg" alt="Аватар пользователя" class="profile__avatar-img" />
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+        <title>Место</title>
+        <link rel="stylesheet" href="./pages/index.css" />
+    </head>
+    <body class="main">
+        <div class="page">
+            <header class="header">
+                <img src="./images/logo.svg" alt="Место" class="header__logo" />
+            </header>
+            <main class="content">
+                <section class="profile">
+                    <div class="profile__info">
+                        <div class="profile__avatar">
+                            <img src="./images/avatar-photo.jpg" alt="Аватар пользователя" class="profile__avatar-img" />
+                        </div>
+                        <div class="profile__info-text">
+                            <h1 class="profile__name">Жак-Ив&nbsp;Кусто</h1>
+                            <button aria-label="Кнопка редактирования профиля" type="button" class="profile__button"></button>
+                            <p class="profile__work">Исследователь океана</p>
+                        </div>
+                    </div>
+                    <button aria-label="Кнопка добавления фото" type="button" class="profile__add-button"></button>
+                </section>
+                <section class="elements"></section>
+            </main>
+            <footer class="footer">
+                <p class="footer__copyright">© 2020 Mesto Russia</p>
+            </footer>
+            <div class="popup popup_edit_form">
+                <div class="popup__container">
+                    <button aria-label="Кнопка закрытия попапа" type="button" class="popup__button-close popup__button-close_position_form"></button>
+                    <form name="profile" class="popup__form popup__form_edit_profile">
+                        <h2 class="popup__title">Редактировать профиль</h2>
+                        <fieldset class="popup__input-wrapper">
+                            <input type="text" name="name" class="popup__value popup__value_field_name" placeholder="Name" />
+                            <input type="text" name="job" class="popup__value popup__value_field_job" placeholder="About me" />
+                            <button type="submit" class="popup__button">Сохранить</button>
+                        </fieldset>
+                    </form>
+                </div>
             </div>
-            <div class="profile__info-text">
-              <h1 class="profile__name">Жак-Ив&nbsp;Кусто</h1>
-              <button aria-label="Кнопка редактирования профиля" type="button" class="profile__button"></button>
-              <p class="profile__work">Исследователь океана</p>
+            <div class="popup popup_edit_cards">
+                <div class="popup__container">
+                    <button aria-label="Кнопка закрытия попапа" type="button" class="popup__button-close popup__button-close_position_form"></button>
+                    <form name="profile" class="popup__form popup__form_edit_cards">
+                        <h2 class="popup__title">Новое место</h2>
+                        <fieldset class="popup__input-wrapper">
+                            <input type="text" name="place" class="popup__value popup__value_field_place" placeholder="Place" />
+                            <input type="url" name="URL" class="popup__value popup__value_field_url" placeholder="URL" />
+                            <button type="submit" class="popup__button">Создать</button>
+                        </fieldset>
+                    </form>
+                </div>
             </div>
-          </div>
-          <button  aria-label="Кнопка добавления фото" type="button" class="profile__add-button"></button>
-        </section>
-        <section class="elements">
-        </section>
-      </main>
-      <footer class="footer">
-        <p class="footer__copyright">© 2020 Mesto Russia</p>
-      </footer>
-      <div class="popup popup_edit_form">
-        <div class="popup__container">
-          <button aria-label="Кнопка закрытия попапа" type="button" class="popup__button-close popup__button-close_position_form"></button>
-          <form name="profile" class="popup__form popup__form_edit_profile">
-            <h2 class="popup__title">Редактировать профиль</h2>
-            <fieldset class="popup__input-wrapper">
-              <input type="text" name="name" class="popup__value popup__value_field_name" placeholder="Name" />
-              <input type="text" name="job" class="popup__value popup__value_field_job" placeholder="About me" />
-              <button type="submit" class="popup__button">Сохранить</button>
-            </fieldset>
-          </form>
+            <div class="popup popup_edit_img">
+                <figure class="popup__figure">
+                    <button aria-label="Кнопка закрытия попапа" type="button" class="popup__button-close popup__button-close_position_img"></button>
+                    <img src="#" alt="" class="popup__img" />
+                    <figcaption class="popup__caption"></figcaption>
+                </figure>
+            </div>
         </div>
-      </div>
-      <div class="popup popup_edit_cards">
-        <div class="popup__container">
-          <button aria-label="Кнопка закрытия попапа" type="button" class="popup__button-close popup__button-close_position_form"></button>
-          <form name="profile" class="popup__form popup__form_edit_cards">
-            <h2 class="popup__title">Новое место</h2>
-            <fieldset class="popup__input-wrapper">
-              <input type="text" name="place" class="popup__value popup__value_field_place" placeholder="Place" />
-              <input type="url" name="URL" class="popup__value popup__value_field_url" placeholder="URL" />
-              <button type="submit" class="popup__button">Создать</button>
-            </fieldset>
-            </form>
-        </div>
-      </div>
-      <div class="popup popup_edit_img popup_opened">
-          <figure class="popup__figure">
-            <button aria-label="Кнопка закрытия попапа" type="button" class="popup__button-close popup__button-close_position_img"></button>
-            <img src="https://pictures.s3.yandex.net/frontend-developer/cards-compressed/chelyabinsk-oblast.jpg" alt="" class="popup__img">
-            <figcaption class="popup__caption">байкал</figcaption>
-          </figure>
-        </div>
-         </div>
-    <template id='template'>
+        <template id="template">
             <article class="element">
-            <button type="button" class="element__button-delete"></button>
-            <img src="" alt="" class="element__img" />
-            <div class="element__wrapper">
-              <h2 class="element__title"></h2>
-              <button type="button" class="element__button-like"></button>
-            </div>
-          </article>
-          </template> 
-    <script src="./scripts/index.js"></script>
-  </body>
+                <button type="button" class="element__button-delete"></button>
+                <button class="element__link">
+                    <img src="#" alt="" class="element__img" />
+                </button>
+                <div class="element__wrapper">
+                    <h2 class="element__title"></h2>
+                    <button type="button" class="element__button-like"></button>
+                </div>
+            </article>
+        </template>
+        <script src="./scripts/index.js"></script>
+    </body>
 </html>
