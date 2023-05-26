@@ -5,7 +5,7 @@
     top: -38px;
     right: -38px;
     padding: 0;
-    background-image: url(../../../images/Close-button-1280.svj);
+    background-image: url(../../../images/CloseButton.svg);
     background-repeat: no-repeat;
     object-fit: cover;
     background-position: center;
@@ -26,6 +26,6 @@
         height: 20px;
         top: -33px;
         right: 0px;
-        background-image: url(../../../images/Close-Button-320.svj);
+        background-image: url(../../../images/CloseButton320.svg);
     }
 }
