@@ -5,14 +5,12 @@
     top: -38px;
     right: -38px;
     padding: 0;
-    background-image: url(../../../images/Close-button.svg);
+    background-image: url(../../../images/Close-button-1280.svg);
     background-repeat: no-repeat;
     object-fit: cover;
     background-position: center;
     border: 0;
     background-color: transparent;
-    align-self: flex-end;
-    z-index: 1;
 }
 
 .popup__button-close:hover {
