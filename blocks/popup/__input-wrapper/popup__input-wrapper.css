@@ -8,7 +8,7 @@
     border: none;
 }
 
-@media screen and (max-width: 550px) {
+@media screen and (max-width: 560px) {
     .popup__input-wrapper {
         margin: 75px 22px 0 22px;
         min-width: 238px;

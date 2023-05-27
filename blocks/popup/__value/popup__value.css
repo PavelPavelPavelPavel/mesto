@@ -13,7 +13,7 @@
     box-sizing: border-box;
 }
 
-@media screen and (max-width: 550px) {
+@media screen and (max-width: 560px) {
     .popup__value {
         min-width: 238px;
     }

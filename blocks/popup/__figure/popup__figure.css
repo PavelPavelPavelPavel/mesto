@@ -7,7 +7,7 @@
 }
 
 
-@media screen and (max-width: 550px) {
+@media screen and (max-width: 560px) {
     .popup__figure {
         margin: 136px auto 0 auto;
     }
