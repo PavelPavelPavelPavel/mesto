@@ -39,26 +39,26 @@ const popupEditCards = document.querySelector(".popup_edit_cards");
 const elements = document.querySelector(".elements");
 
 // Находим кнопку закрытия popup
-const buttonPopupClose = document.querySelectorAll(".popup__button-close");
+const buttonsPopupClose = document.querySelectorAll(".popup__button-close");
 //создаем массив из NodeList
-const buttonClose = Array.from(buttonPopupClose);
+const buttonClose = Array.from(buttonsPopupClose);
 // функция присвоения класса  popup
-const popupClose = (value) => value.classList.remove("popup_opened");
-const popupOpen = (value) => value.classList.add("popup_opened");
+const closePopup = (value) => value.classList.remove("popup_opened");
+const openPopup = (value) => value.classList.add("popup_opened");
 // функция открытия popup`s
 function openPopupProfile() {
-    popupOpen(popupEditForm);
+    openPopup(popupEditForm);
     nameInput.value = profileName.textContent;
     jobInput.value = profileJob.textContent;
 }
 function openPopupCard() {
-    popupOpen(popupEditCards);
+    openPopup(popupEditCards);
     placeInput.value = "";
     urlInput.value = "";
 }
 //функцтя открытия фото реального размера
 function openPopupImg(link, text) {
-    popupOpen(popupImg);
+    openPopup(popupImg);
     popupImgFullSize.src = link;
     popupCaption.textContent = text;
     popupImgFullSize.alt = text;
@@ -71,11 +71,11 @@ buttonOpenProfile.addEventListener("click", openPopupProfile);
 for (let i = 0; i < buttonClose.length; i++) {
     buttonClose[i].addEventListener("click", function () {
         if (buttonClose[i] === buttonClose[0]) {
-            popupClose(popupEditForm);
+            closePopup(popupEditForm);
         } else if (buttonClose[i] === buttonClose[1]) {
-            popupClose(popupEditCards);
+            closePopup(popupEditCards);
         } else {
-            popupClose(popupImg);
+            closePopup(popupImg);
         }
     });
 }
@@ -85,13 +85,13 @@ function handleFormProfileSubmit(evt) {
     // Так мы можем определить свою логику отправки.
     // О том, как это делать, расскажем позже.
     //закрытие popup
-    popupClose(popupEditForm);
     // Получите значение полей jobInput и nameInput из свойства value
     const nameInputValue = nameInput.value;
     const jobInputValue = jobInput.value;
     // Вставьте новые значения с помощью textContent
     profileName.textContent = nameInputValue;
     profileJob.textContent = jobInputValue;
+    closePopup(popupEditForm);
 }
 //Обработчик «отправки» формы card
 function handleFormCardSubmit(evt) {
@@ -102,10 +102,9 @@ function handleFormCardSubmit(evt) {
         link: urlInput.value,
         alt: placeInput.value,
     };
-
-    popupClose(popupEditCards);
     //создаём карточку
     elements.prepend(createCard(cardValue));
+    closePopup(popupEditCards);
 }
 
 //получаем карточку с содержимым
