@@ -34,27 +34,31 @@
             <div class="popup popup_edit_form">
                 <div class="popup__container">
                     <button aria-label="Кнопка закрытия попапа" type="button" class="popup__button-close"></button>
-                    <form name="profile" class="popup__form popup__form_edit_profile">
+                    <div class="popup__form popup__form_edit_profile">
                         <h2 class="popup__title">Редактировать профиль</h2>
-                        <fieldset class="popup__input-wrapper">
-                            <input type="text" name="name" required class="popup__value popup__value_field_name" placeholder="Name" />
-                            <input type="text" name="job" required class="popup__value popup__value_field_job" placeholder="About me" />
-                            <button type="submit" class="popup__button">Сохранить</button>
-                        </fieldset>
-                    </form>
+                        <form name="profile" class="popup__input-wrapper" novalidate>
+                            <input id="input-name" type="text" name="name" required class="popup__value popup__value_field_name" minlength="2" maxlength="40" placeholder="Name" />
+                            <span id="input-name-error" class="popup__error"></span>
+                            <input id="input-job" type="text" name="job" required class="popup__value popup__value_field_job" minlength="2" maxlength="200" placeholder="About me" />
+                            <span id="input-job-error" class="popup__error"></span>
+                            <button type="submit" class="popup__button popup__button-profile">Сохранить</button>
+                        </form>
+                    </div>
                 </div>
             </div>
             <div class="popup popup_edit_cards">
                 <div class="popup__container">
                     <button aria-label="Кнопка закрытия попапа" type="button" class="popup__button-close"></button>
-                    <form name="profile" class="popup__form popup__form_edit_cards">
+                    <div class="popup__form popup__form_edit_cards">
                         <h2 class="popup__title">Новое место</h2>
-                        <fieldset class="popup__input-wrapper">
-                            <input type="text" name="place" required class="popup__value popup__value_field_place" placeholder="Place" />
-                            <input type="url" name="URL" required class="popup__value popup__value_field_url" placeholder="URL" />
-                            <button type="submit" class="popup__button">Создать</button>
-                        </fieldset>
-                    </form>
+                        <form name="card" class="popup__input-wrapper" novalidate>
+                            <input id="input-place" type="text" name="place" required class="popup__value popup__value_field_place" minlength="2" maxlength="30" placeholder="Place" />
+                            <span id="input-place-error" class="popup__error"></span>
+                            <input id="input-url" type="url" name="URL" required class="popup__value popup__value_field_url" placeholder="URL" />
+                            <span id="input-url-error" class="popup__error"></span>   
+                            <button type="submit" class="popup__button popup__button-card popup__button_disabled" disabled>Создать</button>
+                        </form>
+                    </div>
                 </div>
             </div>
             <div class="popup popup_edit_img">
@@ -77,7 +81,8 @@
                 </div>
             </article>
         </template>
-        <script type="module" src="./scripts/index.js"></script>
-        <script type="module" src="./scripts/data.js"></script>
+            <script type="module" src="./scripts/validate.js"></script>
+            <script type="module" src="./scripts/data.js"></script>
+            <script type="module" src="./scripts/index.js"></script>
     </body>
 </html>
