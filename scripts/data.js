@@ -1,4 +1,4 @@
-//массив с карточками 
+//массив с карточками
 const initialCards = [
     {
         name: "Архыз",
@@ -26,5 +26,13 @@ const initialCards = [
     },
 ];
 
+const validationConfig = {
+    form: ".popup__input-wrapper",
+    inputSelector: ".popup__value",
+    submitButtonSelector: ".popup__button",
+    disabledButtonClass: "popup__button_disabled",
+    inputErrorClass: "popup__value_type_error",
+    errorClass: "popup__error",
+};
 
-export { initialCards };
+export { initialCards, validationConfig };
