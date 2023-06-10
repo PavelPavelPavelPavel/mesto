@@ -1,7 +1,6 @@
 //импорт из файла данныхs
-import { initialCards } from "./data.js";
-import { validationConfig } from "./data.js";
-import { enableValidation } from "./validate.js";
+import { initialCards, validationConfig } from "./data.js";
+import { enableValidation, addClassButton, removeClassButton } from "./validate.js";
 
 // Находим форму в DOM
 const popups = Array.from(document.querySelectorAll(".popup"));
@@ -51,27 +50,23 @@ function closePopupOnEscape(evt) {
         closePopup(document.querySelector(".popup_opened"));
     }
 }
+//выбираем ближайшую кнопку
+const closestBtn = (evt) => {
+    const item = evt.target.closest(".popup");
+    closePopup(item);
+}
 //закрываем popups без сохранения
-const closePopupOnСross = (btn) => {
-    for (let i = 0; i < btn.length; i++) {
-        btn[i].addEventListener("click", function () {
-            if (btn[i] === btn[0]) {
-                closePopup(popupEditForm);
-            } else if (btn[i] === btn[1]) {
-                closePopup(popupEditCards);
-            } else {
-                closePopup(popupImg);
-            }
-        });
-    }
+const closePopupOnСross = (btns) => {
+    btns.forEach(btn => {
+     btn.addEventListener('click', closestBtn)
+    })
 };
 // функции открытия и закрытия popup
-const closePopupClickOverlay = () => {
+const initClosePopupByOverlayClick = () => {
     popups.forEach((popup) => {
         popup.addEventListener("mousedown", (evt) => {
             if (evt.target === evt.currentTarget) {
                 closePopup(popup);
-                clearingErrorInSpan(formsErrorSpan, inputs);
             }
         });
     });
@@ -85,7 +80,6 @@ const closePopup = (value) => {
 const openPopup = (value) => {
     value.classList.add("popup_opened");
     document.addEventListener("keydown", closePopupOnEscape);
-    clearingErrorInSpan(formsErrorSpan, inputs);
 };
 //очистка спана при закрытии popup
 const clearingErrorInSpan = (spanElement, inputElement) => {
@@ -98,27 +92,27 @@ const clearingErrorInSpan = (spanElement, inputElement) => {
 };
 //скрываем кнопку popup__card при повторном открытии
 const disabledButtonPopupCard = () => {
-    const buttonSubmit = document.querySelector(".popup__button-card");
-    buttonSubmit.classList.add(validationConfig.disabledButtonClass);
-    buttonSubmit.setAttribute("disabled", true);
+    const submitButton = document.querySelector(".popup__button-card");
+    addClassButton(submitButton, validationConfig);
 };
 //показываем кнопку popup__profile при повторном открытии
-const ebableButtonPopupProfile = () => {
-    const buttonSubmit = document.querySelector(".popup__button-profile");
-    buttonSubmit.classList.remove(validationConfig.disabledButtonClass);
-    buttonSubmit.removeAttribute("disabled");
+const ebableButtonPopupProfile = () => {  
+    const submitButton = document.querySelector(".popup__button-profile");
+    removeClassButton(submitButton, validationConfig);
 };
 // функция открытия popup`s
 function openPopupProfile() {
     openPopup(popupEditForm);
+    clearingErrorInSpan(formsErrorSpan, inputs);
     nameInput.value = profileName.textContent;
     jobInput.value = profileJob.textContent;
     ebableButtonPopupProfile();
+
 }
 function openPopupCard() {
     openPopup(popupEditCards);
-    placeInput.value = "";
-    urlInput.value = "";
+    clearingErrorInSpan(formsErrorSpan, inputs);
+    document.getElementById('card').reset();
     disabledButtonPopupCard();
 }
 //функцтя открытия фото реального размера
@@ -179,13 +173,13 @@ const createCard = (card) => {
 formElementProfile.addEventListener("submit", handleFormProfileSubmit);
 formElementCard.addEventListener("submit", handleFormCardSubmit);
 //рендерим карточки на страницу
-const renderCard = (item) => {
-    item.forEach((item) => {
-        elements.append(createCard(item));
+const renderInitialCards = (card) => {
+    card.forEach((card) => {
+        elements.append(createCard(card));
     });
 };
 
 closePopupOnСross(buttonsClose);
-renderCard(initialCards);
-closePopupClickOverlay();
+renderInitialCards(initialCards);
+initClosePopupByOverlayClick();
 enableValidation(validationConfig);

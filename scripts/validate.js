@@ -73,16 +73,21 @@ function hasInvalidInput(inputList) {
 //validationConfig - массив классов)
 //передается в setEventListener для каждой формы
 function toggleButtonState(inputList, submitButton, validationConfig) {
-  if (hasInvalidInput(inputList) === true) {
+  if (hasInvalidInput(inputList)) {
       // проверяем поле на валидность
-      submitButton.setAttribute("disabled", true);
-      submitButton.classList.add(validationConfig.disabledButtonClass);
-      console.log("add");
+      addClassButton(submitButton, validationConfig);
   } else {
-      submitButton.classList.remove(validationConfig.disabledButtonClass);
-      submitButton.removeAttribute("disabled");
-      console.log("remove");
+      removeClassButton(submitButton, validationConfig)
   }
 }
 
-export { enableValidation };
+function addClassButton(submitButton, validationConfig) {
+      submitButton.setAttribute("disabled", true);
+      submitButton.classList.add(validationConfig.disabledButtonClass);
+}
+
+function removeClassButton(submitButton, validationConfig) {
+  submitButton.classList.remove(validationConfig.disabledButtonClass);
+  submitButton.removeAttribute("disabled");
+}
+export { enableValidation, addClassButton, removeClassButton };
