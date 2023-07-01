@@ -1,6 +1,6 @@
 //импорт из файла данныхs
 import { initialCards, validationConfig } from "./data.js";
-import { FormValidator, enableValidation, addClassButton, removeClassButton } from "./formValidator.js";
+import { FormValidator } from "./formValidator.js";
 import { Card } from "./card.js";
 // Находим форму в DOM
 const popups = Array.from(document.querySelectorAll(".popup"));
@@ -11,9 +11,11 @@ const nameInput = document.querySelector(".popup__value_field_name");
 const jobInput = document.querySelector(".popup__value_field_job");
 const placeInput = document.querySelector(".popup__value_field_place");
 const urlInput = document.querySelector(".popup__value_field_url");
-const inputs = Array.from(document.querySelectorAll(validationConfig.inputSelector));
-//находим поле с ошибкой
-const formsErrorSpan = Array.from(document.querySelectorAll(".popup__error"));
+//формы
+const formCard = document.getElementById("card");
+const formProfile = document.getElementById("profile");
+const cardValidity = new FormValidator(validationConfig, formCard);
+const profileValidity = new FormValidator(validationConfig, formProfile);
 // Находим кнопку открытия popup и добавления карточки
 const buttonOpenProfile = document.querySelector(".profile__button");
 const buttonOpenCards = document.querySelector(".profile__add-button");
@@ -55,8 +57,8 @@ const initClosePopupByOverlayClick = () => {
 };
 //функция закрытия по нажатию на escape
 function closePopupOnEscape(evt) {
-        if (evt.key === "Escape") {
-        closePopup(document.querySelector('.popup_opened'));
+    if (evt.key === "Escape") {
+        closePopup(document.querySelector(".popup_opened"));
     }
 }
 //закрытие popup
@@ -69,38 +71,21 @@ const openPopup = (value) => {
     value.classList.add("popup_opened");
     document.addEventListener("keydown", closePopupOnEscape);
 };
-//очистка спана при закрытии popup
-const clearingErrorInSpan = (spanElement, inputElement) => {
-    spanElement.forEach((span) => {
-        span.textContent = "";
-    });
-    inputElement.forEach((input) => {
-        input.classList.remove(validationConfig.inputErrorClass);
-    });
-};
-//скрываем кнопку popup__card при повторном открытии
-const disabledButtonPopupCard = () => {
-    const submitButton = document.querySelector(".popup__button-card");
-    addClassButton(submitButton, validationConfig);
-};
-//показываем кнопку popup__profile при повторном открытии
-const enableButtonPopupProfile = () => {
-    const submitButton = document.querySelector(".popup__button-profile");
-    removeClassButton(submitButton, validationConfig);
-};
 // функция открытия popup`s
 function openPopupProfile() {
     openPopup(popupEditForm);
-    clearingErrorInSpan(formsErrorSpan, inputs);
+    profileValidity.enableValidation();
+    profileValidity.clearingErrorInSpan();
     nameInput.value = profileName.textContent;
     jobInput.value = profileJob.textContent;
-    enableButtonPopupProfile();
+    profileValidity.enableSubmitButton();
 }
 function openPopupCard() {
     openPopup(popupEditCards);
-    clearingErrorInSpan(formsErrorSpan, inputs);
-    document.getElementById("card").reset();
-    disabledButtonPopupCard();
+    cardValidity.enableValidation();
+    cardValidity.clearingErrorInSpan();
+    cardValidity.formReset();
+    cardValidity.disableSubmitButton();
 }
 
 function openPopupImg(name, url) {
@@ -116,11 +101,11 @@ buttonOpenCards.addEventListener("click", openPopupCard);
 buttonOpenProfile.addEventListener("click", openPopupProfile);
 // Обработчик «отправки» формы profile
 function handleFormProfileSubmit(evt) {
-    evt.preventDefault(); 
+    evt.preventDefault();
 
     const nameInputValue = nameInput.value;
     const jobInputValue = jobInput.value;
-    
+
     profileName.textContent = nameInputValue;
     profileJob.textContent = jobInputValue;
 
@@ -129,7 +114,7 @@ function handleFormProfileSubmit(evt) {
 //Обработчик «отправки» формы card
 function handleFormCardSubmit(evt) {
     evt.preventDefault();
-   
+
     const cardValue = {
         name: placeInput.value,
         link: urlInput.value,
@@ -147,7 +132,7 @@ formElementCard.addEventListener("submit", handleFormCardSubmit);
 //рендерим карточки на страницу
 const renderInitialCards = (cards) => {
     cards.forEach((item) => {
-        const card = new Card(item, ".template-class",openPopupImg);
+        const card = new Card(item, ".template-class", openPopupImg);
         elements.append(card.generateCard());
     });
 };
@@ -155,13 +140,3 @@ const renderInitialCards = (cards) => {
 closePopupOnСross(buttonsClose);
 renderInitialCards(initialCards);
 initClosePopupByOverlayClick();
-//enableValidation(validationConfig);
-const cardValidity = new FormValidator(validationConfig, handleFormCardSubmit);
-const profileValidity = new FormValidator(validationConfig, handleFormProfileSubmit);
-profileValidity.enableValidation();
-cardValidity.enableValidation();
-
-
-
-
-
