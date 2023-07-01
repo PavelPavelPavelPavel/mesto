@@ -1,6 +1,6 @@
 import { initialCards, validationConfig } from "./data.js";
 import { FormValidator } from "./formValidator.js";
-import { Card } from "./Card.js";
+import { Card } from "./card.js";
 // Находим форму в DOM
 const popups = Array.from(document.querySelectorAll(".popup"));
 const formElementProfile = document.querySelector(".popup__form_edit_profile");
@@ -31,15 +31,21 @@ const popupImg = document.querySelector(".popup_edit_img");
 const elements = document.querySelector(".elements");
 //находим все кнопки в node и делаем массив
 const buttonsClose = Array.from(document.querySelectorAll(".popup__button-close"));
+
+const createCard = (card) => {
+    const newCard = new Card(card, ".template-class", openPopupImg);
+    newCard.generateCard();
+    return newCard;
+};
 //выбираем ближайшую кнопку
-const closestBtn = (evt) => {
+const closeClosestBtnPopup = (evt) => {
     const item = evt.target.closest(".popup");
     closePopup(item);
 };
 //закрываем popups без сохранения
-const closePopupOnСross = (btns) => {
+const initClosePopupsOnCross = (btns) => {
     btns.forEach((btn) => {
-        btn.addEventListener("click", closestBtn);
+        btn.addEventListener("click", closeClosestBtnPopup);
     });
 };
 // функции открытия и закрытия popup
@@ -73,15 +79,16 @@ function openPopupProfile() {
     openPopup(popupEditForm);
     profileValidity.enableValidation();
     profileValidity.clearingErrorInSpan();
+    profileValidity.enableSubmitButton();
     nameInput.value = profileName.textContent;
     jobInput.value = profileJob.textContent;
-    profileValidity.enableSubmitButton();
 }
+
 function openPopupCard() {
     openPopup(popupEditCards);
     cardValidity.enableValidation();
     cardValidity.clearingErrorInSpan();
-    cardValidity.formReset();
+    cardValidity.resetForm();
     cardValidity.disableSubmitButton();
 }
 
@@ -91,7 +98,6 @@ function openPopupImg(name, url) {
     popupCaption.textContent = name;
     popupImgFullSize.alt = name;
 }
-
 //открываем popup с карточками
 buttonOpenCards.addEventListener("click", openPopupCard);
 // открываем popup и подставояем значения из profileName и profileJob при помоще функции openPopup
@@ -115,11 +121,9 @@ function handleFormCardSubmit(evt) {
     const cardValue = {
         name: placeInput.value,
         link: urlInput.value,
-        alt: placeInput.value,
     };
     //создаём карточку
-    const card = new Card(cardValue, ".template-class", openPopupImg);
-    elements.prepend(card.generateCard());
+    elements.prepend(createCard(cardValue).generateCard());
     closePopup(popupEditCards);
 }
 // Прикрепляем обработчик к форме:
@@ -127,12 +131,11 @@ formElementProfile.addEventListener("submit", handleFormProfileSubmit);
 formElementCard.addEventListener("submit", handleFormCardSubmit);
 //рендерим карточки на страницу
 const renderInitialCards = (cards) => {
-    cards.forEach((item) => {
-        const card = new Card(item, ".template-class", openPopupImg);
-        elements.append(card.generateCard());
+    cards.forEach((card) => {
+        elements.append(createCard(card).generateCard());
     });
 };
 
-closePopupOnСross(buttonsClose);
+initClosePopupsOnCross(buttonsClose);
 renderInitialCards(initialCards);
 initClosePopupByOverlayClick();
