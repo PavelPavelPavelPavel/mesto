@@ -1,6 +1,5 @@
-//импорт из файла данныхs
 import { initialCards, validationConfig } from "./data.js";
-import { FormValidator } from "./FormValidator.js";
+import { FormValidator } from "./formValidator.js";
 import { Card } from "./Card.js";
 // Находим форму в DOM
 const popups = Array.from(document.querySelectorAll(".popup"));
@@ -22,7 +21,6 @@ const buttonOpenCards = document.querySelector(".profile__add-button");
 // Выбираем поля с именем и профессией
 const profileName = document.querySelector(".profile__name");
 const profileJob = document.querySelector(".profile__work");
-//////////////////////////
 const popupCaption = document.querySelector(".popup__caption");
 const popupImgFullSize = document.querySelector(".popup__img");
 //Находим popups
@@ -33,7 +31,6 @@ const popupImg = document.querySelector(".popup_edit_img");
 const elements = document.querySelector(".elements");
 //находим все кнопки в node и делаем массив
 const buttonsClose = Array.from(document.querySelectorAll(".popup__button-close"));
-
 //выбираем ближайшую кнопку
 const closestBtn = (evt) => {
     const item = evt.target.closest(".popup");
@@ -125,7 +122,6 @@ function handleFormCardSubmit(evt) {
     elements.prepend(card.generateCard());
     closePopup(popupEditCards);
 }
-
 // Прикрепляем обработчик к форме:
 formElementProfile.addEventListener("submit", handleFormProfileSubmit);
 formElementCard.addEventListener("submit", handleFormCardSubmit);
