@@ -1,7 +1,7 @@
 //импорт из файла данныхs
 import { initialCards, validationConfig } from "./data.js";
-import { FormValidator } from "./formValidator.js";
-import { Card } from "./card.js";
+import { FormValidator } from "./FormValidator.js";
+import { Card } from "./Card.js";
 // Находим форму в DOM
 const popups = Array.from(document.querySelectorAll(".popup"));
 const formElementProfile = document.querySelector(".popup__form_edit_profile");

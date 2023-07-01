@@ -1,4 +1,3 @@
-//import { validationConfig } from "./data";
 
 class FormValidator {
   constructor(validationConfig, form) {
