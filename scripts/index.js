@@ -33,10 +33,9 @@ const elements = document.querySelector(".elements");
 const buttonsClose = Array.from(document.querySelectorAll(".popup__button-close"));
 
 const createCard = (card) => {
-    const newCard = new Card(card, ".template-class", openPopupImg);
-    newCard.generateCard();
-    return newCard;
-};
+    const newCard = new Card(card, ".template-class", openPopupImg); 
+    return newCard.generateCard();
+}
 //выбираем ближайшую кнопку
 const closeClosestBtnPopup = (evt) => {
     const item = evt.target.closest(".popup");
@@ -123,7 +122,7 @@ function handleFormCardSubmit(evt) {
         link: urlInput.value,
     };
     //создаём карточку
-    elements.prepend(createCard(cardValue).generateCard());
+    elements.prepend(createCard(cardValue));
     closePopup(popupEditCards);
 }
 // Прикрепляем обработчик к форме:
@@ -132,7 +131,7 @@ formElementCard.addEventListener("submit", handleFormCardSubmit);
 //рендерим карточки на страницу
 const renderInitialCards = (cards) => {
     cards.forEach((card) => {
-        elements.append(createCard(card).generateCard());
+        elements.append(createCard(card));
     });
 };
 

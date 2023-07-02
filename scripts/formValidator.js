@@ -15,9 +15,6 @@ class FormValidator {
     }
 
     clearingErrorInSpan() {
-        this._inputsErrorSpan.forEach((span) => {
-            span.textContent = "";
-        });
         this._inputsList.forEach((input) => {
             this._hideInputError(input);
         });
