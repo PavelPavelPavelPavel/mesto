@@ -1,10 +1,48 @@
 class FormValidator {
+<<<<<<< HEAD
    constructor(validationConfig, form) {
     this._validationConfig = validationConfig;
     this._form = form;
+||||||| 5e93ef8
+  constructor(validationConfig, form) {
+      this._validationConfig = validationConfig;
+      this._form = form;
+      this._formsList = Array.from(document.querySelectorAll(this._validationConfig.form));
+      this._inputsList = Array.from(this._form.querySelectorAll(this._validationConfig.inputSelector));
+      this._submitButton = this._form.querySelector(this._validationConfig.submitButtonSelector);
+      this._inputsErrorSpan = Array.from(document.querySelectorAll(".popup__error"));
+  }
+=======
+    constructor(validationConfig, form) {
+        this._validationConfig = validationConfig;
+        this._form = form;
+        this._inputsList = Array.from(this._form.querySelectorAll(this._validationConfig.inputSelector));
+        this._submitButton = this._form.querySelector(this._validationConfig.submitButtonSelector);
+        this._inputsErrorSpan = Array.from(document.querySelectorAll(".popup__error"));
+    }
+>>>>>>> main
 
+<<<<<<< HEAD
    }
+||||||| 5e93ef8
+  enableValidation() {
+      this._formsList.forEach((form) => {
+          form.addEventListener("submit", (evt) => {
+              evt.preventDefault();
+          });
+          this._setEventListeners();
+      });
+  }
+=======
+    enableValidation() {
+        this._form.addEventListener("submit", (evt) => {
+            evt.preventDefault();
+        });
+        this._setEventListeners();
+    }
+>>>>>>> main
 
+<<<<<<< HEAD
 enableValidation() {
     const formList = Array.from(document.querySelectorAll(validationConfig.form));
     formList.forEach((form) => {
@@ -14,24 +52,155 @@ enableValidation() {
         this._setEventListeners(); 
     });
    }
+||||||| 5e93ef8
+  clearingErrorInSpan() {
+      this._inputsErrorSpan.forEach((span) => {
+          span.textContent = "";
+      });
+      this._inputsList.forEach((input) => {
+          input.classList.remove(this._validationConfig.inputErrorClass);
+      });
+  }
+=======
+    clearingErrorInSpan() {
+        this._inputsList.forEach((input) => {
+            this._hideInputError(input);
+        });
+    }
+>>>>>>> main
 
+<<<<<<< HEAD
    _handleInputsList() {
     Array.from(form.querySelectorAll(validationConfig.inputSelector));
+||||||| 5e93ef8
+  _showInputError(inputValue) {
+      const errorElement = document.querySelector(`#${inputValue.id}-error`);
+      inputValue.classList.add(this._validationConfig.inputErrorClass);
+      errorElement.textContent = inputValue.validationMessage;
+      errorElement.classList.add(this._validationConfig.errorClass);
+  }
+=======
+    _showInputError(inputValue) {
+        const errorElement = document.querySelector(`#${inputValue.id}-error`);
+        inputValue.classList.add(this._validationConfig.inputErrorClass);
+        errorElement.textContent = inputValue.validationMessage;
+        errorElement.classList.add(this._validationConfig.errorClass);
+    }
+>>>>>>> main
 
+<<<<<<< HEAD
    }
+||||||| 5e93ef8
+  _hideInputError(inputValue) {
+      const errorElement = document.querySelector(`#${inputValue.id}-error`);
+      inputValue.classList.remove(this._validationConfig.inputErrorClass);
+      errorElement.textContent = "";
+  }
+=======
+    _hideInputError(inputValue) {
+        const errorElement = document.querySelector(`#${inputValue.id}-error`);
+        inputValue.classList.remove(this._validationConfig.inputErrorClass);
+        errorElement.textContent = "";
+    }
+>>>>>>> main
 
+<<<<<<< HEAD
    _setEventListeners()  {
+||||||| 5e93ef8
+  _checkInputValidity(inputValue) {
+      if (!inputValue.validity.valid) {
+          this._showInputError(inputValue);
+      } else {
+          this._hideInputError(inputValue);
+      }
+  }
+=======
+    _checkInputValidity(inputValue) {
+        if (!inputValue.validity.valid) {
+            this._showInputError(inputValue);
+        } else {
+            this._hideInputError(inputValue);
+        }
+    }
+>>>>>>> main
 
+<<<<<<< HEAD
    }
+||||||| 5e93ef8
+  _hasInvalidInput() {
+      return this._inputsList.some((input) => {
+          return !input.validity.valid;
+      });
+  }
+=======
+    _hasInvalidInput() {
+        return this._inputsList.some((input) => {
+            return !input.validity.valid;
+        });
+    }
+>>>>>>> main
 
+<<<<<<< HEAD
    _showInputError() {
+||||||| 5e93ef8
+  _toggleButtonState() {
+      if (this._hasInvalidInput()) {
+          this.disableSubmitButton();
+      } else {
+          this.enableSubmitButton();
+      }
+  }
+=======
+    _toggleButtonState() {
+        if (this._hasInvalidInput()) {
+            this.disableSubmitButton();
+        } else {
+            this.enableSubmitButton();
+        }
+    }
+>>>>>>> main
 
+<<<<<<< HEAD
    }
+||||||| 5e93ef8
+  disableSubmitButton() {
+      this._submitButton.setAttribute("disabled", true);
+      this._submitButton.classList.add(this._validationConfig.disabledButtonClass);
+  }
+=======
+    disableSubmitButton() {
+        this._submitButton.setAttribute("disabled", true);
+        this._submitButton.classList.add(this._validationConfig.disabledButtonClass);
+    }
+>>>>>>> main
 
+<<<<<<< HEAD
    _hideInputError() {
+||||||| 5e93ef8
+  enableSubmitButton() {
+      this._submitButton.classList.remove(this._validationConfig.disabledButtonClass);
+      this._submitButton.removeAttribute("disabled");
+  }
+=======
+    enableSubmitButton() {
+        this._submitButton.classList.remove(this._validationConfig.disabledButtonClass);
+        this._submitButton.removeAttribute("disabled");
+    }
+>>>>>>> main
 
+<<<<<<< HEAD
    }
+||||||| 5e93ef8
+  formReset() {
+      this._form.reset();
+  }
+=======
+    resetForm() {
+        this._form.reset();
+    }
+>>>>>>> main
 
+<<<<<<< HEAD
    _checkInputValidity() {
 
    }
@@ -44,6 +213,25 @@ enableValidation() {
     
    }
    
+||||||| 5e93ef8
+  _setEventListeners() {
+      this._inputsList.forEach((inputValue) => {
+          inputValue.addEventListener("input", () => {
+              this._toggleButtonState();
+              this._checkInputValidity(inputValue);
+          });
+      });
+  }
+=======
+    _setEventListeners() {
+        this._inputsList.forEach((inputValue) => {
+            inputValue.addEventListener("input", () => {
+                this._toggleButtonState();
+                this._checkInputValidity(inputValue);
+            });
+        });
+    }
+>>>>>>> main
 }
 
 /////////////////////////////////////////////////

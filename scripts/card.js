@@ -1,7 +1,6 @@
 class Card {
     constructor(data, templateSelector, openPoupImgFullSize) {
-        //получаем на вход данные карточки и id
-        this._name = data.name; //tamplate
+        this._name = data.name;
         this._link = data.link;
         this._templateSelector = templateSelector;
         this._openPoupImgFullSize = openPoupImgFullSize;
@@ -9,17 +8,13 @@ class Card {
 
     _getTemplate() {
         // получаем разметку из template
-        const cardElement = document
-            .querySelector(this._templateSelector) // параметр из конструктора
-            .content.querySelector(".element")
-            .cloneNode(true);
+        const cardElement = document.querySelector(this._templateSelector).content.querySelector(".element").cloneNode(true);
 
         return cardElement;
     }
 
     generateCard() {
-        this._element = this._getTemplate(); //получаем разметку карточки
-
+        this._element = this._getTemplate();
         this._cardImg = this._element.querySelector(".element__img");
         this._btnCardDelete = this._element.querySelector(".element__button-delete");
         this._cardImg.src = this._link;
@@ -46,14 +41,11 @@ class Card {
 
         this._btnCardDelete.addEventListener("click", () => {
             this._handleCardDelete();
-           
         });
 
         this._btnPopupImgOpen.addEventListener("click", () => {
             this._openPoupImgFullSize(this._name, this._link);
-       });
-
-
+        });
     }
 }
 export { Card };
