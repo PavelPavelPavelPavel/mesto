@@ -71,7 +71,7 @@ class FormValidator {
       this._submitButton.removeAttribute("disabled");
   }
 
-  formReset() {
+  resetForm() {
       this._form.reset();
   }
 

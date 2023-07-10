@@ -1,6 +1,8 @@
 import { initialCards, validationConfig } from "./data.js";
 import { FormValidator } from "./formValidator.js";
 import { Card } from "./card.js";
+import { Section } from "./section.js";
+
 // Находим форму в DOM
 const popups = Array.from(document.querySelectorAll(".popup"));
 const formElementProfile = document.querySelector(".popup__form_edit_profile");
@@ -28,14 +30,14 @@ const popupEditForm = document.querySelector(".popup_edit_form");
 const popupEditCards = document.querySelector(".popup_edit_cards");
 const popupImg = document.querySelector(".popup_edit_img");
 //Находим article в верстке для вставки template с карточками
-const elements = document.querySelector(".elements");
+//const elements = document.querySelector(".elements");
 //находим все кнопки в node и делаем массив
 const buttonsClose = Array.from(document.querySelectorAll(".popup__button-close"));
 
-const createCard = (card) => {
+/*const createCard = (card) => {
     const newCard = new Card(card, ".template-class", openPopupImg); 
     return newCard.generateCard();
-}
+}*/
 //выбираем ближайшую кнопку
 const closeClosestBtnPopup = (evt) => {
     const item = evt.target.closest(".popup");
@@ -57,6 +59,18 @@ const initClosePopupByOverlayClick = () => {
         });
     });
 };
+
+// 
+function initRenderCard (data) {
+    const defaultCard = new Section({
+        items: data, 
+        renderer: (item) => {
+          const card =  new Card(item, '.template');
+          const cardElement = card.generateCard();
+          defaultCard.addItem(cardElement);
+        }},'.elements');
+        defaultCard.renderItems();
+}
 //функция закрытия по нажатию на escape
 function closePopupOnEscape(evt) {
     if (evt.key === "Escape") {
@@ -117,24 +131,18 @@ function handleFormProfileSubmit(evt) {
 function handleFormCardSubmit(evt) {
     evt.preventDefault();
 
-    const cardValue = {
+    const cardValue = [{
         name: placeInput.value,
         link: urlInput.value,
-    };
-    //создаём карточку
-    elements.prepend(createCard(cardValue));
+    }];
+    initRenderCard(cardValue);
     closePopup(popupEditCards);
 }
 // Прикрепляем обработчик к форме:
 formElementProfile.addEventListener("submit", handleFormProfileSubmit);
 formElementCard.addEventListener("submit", handleFormCardSubmit);
-//рендерим карточки на страницу
-const renderInitialCards = (cards) => {
-    cards.forEach((card) => {
-        elements.append(createCard(card));
-    });
-};
+
 
 initClosePopupsOnCross(buttonsClose);
-renderInitialCards(initialCards);
 initClosePopupByOverlayClick();
+initRenderCard(initialCards);

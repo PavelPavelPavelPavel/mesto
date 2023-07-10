@@ -6,10 +6,8 @@ class Card {
         this._openPoupImgFullSize = openPoupImgFullSize;
     }
 
-    _getTemplate() {
-        // получаем разметку из template
+    _getTemplate() { 
         const cardElement = document.querySelector(this._templateSelector).content.querySelector(".element").cloneNode(true);
-
         return cardElement;
     }
 
