@@ -3,6 +3,7 @@ import { FormValidator } from "./formValidator.js";
 import { Card } from "./card.js";
 import { Section } from "./section.js";
 import { Popup } from "./popup.js";
+import { PopupWithImage } from "./popupWithImage.js";
 
 // Находим форму в DOM
 const formElementProfile = document.querySelector(".popup__form_edit_profile");
@@ -15,30 +16,38 @@ const urlInput = document.querySelector(".popup__value_field_url");
 //Находим popups
 const popupEditForm = document.querySelector(".popup_edit_form");
 const popupEditCards = document.querySelector(".popup_edit_cards");
-const popupImg = document.querySelector(".popup_edit_img");
+const popupOpenImg = document.querySelector(".popup_edit_img");
+const popupCaption = document.querySelector(".popup__caption");
+const popupImgFullSize = document.querySelector(".popup__img"); 
 //находим все кнопки в node и делаем массив
 const buttonsClose = Array.from(document.querySelectorAll(".popup__button-close"));
+// Находим кнопку открытия popup и добавления карточки
+const btnOpenProfile = document.querySelector(".profile__button");
+const btnOpenCard = document.querySelector(".profile__add-button");
+// Выбираем поля с именем и профессией
+const profileName = document.querySelector(".profile__name");
+const profileJob = document.querySelector(".profile__work");
 //формы
 const formCard = document.getElementById("card");
 const formProfile = document.getElementById("profile");
 const cardValidity = new FormValidator(validationConfig, formCard);
 const profileValidity = new FormValidator(validationConfig, formProfile);
-const cardPopup = new Popup(popupEditCards, 'popup_opened', buttonsClose);
-const profilePopup = new Popup(popupEditForm, 'popup_opened', buttonsClose);
-// Находим кнопку открытия popup и добавления карточки
-const buttonOpenProfile = document.querySelector(".profile__button");
-const buttonOpenCards = document.querySelector(".profile__add-button");
-// Выбираем поля с именем и профессией
-const profileName = document.querySelector(".profile__name");
-const profileJob = document.querySelector(".profile__work");
-const popupCaption = document.querySelector(".popup__caption");
-const popupImgFullSize = document.querySelector(".popup__img");
+class Popups extends Popup {
+    constructor(popupSelector) {
+        super(popupSelector, "popup_opened", buttonsClose)
+    }
+};
+const cardPopup = new Popups(popupEditCards);
+const profilePopup = new Popups(popupEditForm);
+
+
+
 
 function initRenderCard (data, containerSelector = '.elements') {
     const defaultCard = new Section({
         items: data, 
         renderer: (item) => {
-          const card =  new Card(item, '.template');
+          const card =  new Card(item, '.template', openPopupImg);
           const cardElement = card.generateCard();
           defaultCard.addItem(cardElement);
         }}, containerSelector);
@@ -64,15 +73,16 @@ function openPopupCard() {
     cardValidity.disableSubmitButton();
 }
 
-function openPopupImg(name, url) {
-    popupImgFullSize.src = url;
-    popupCaption.textContent = name;
-    popupImgFullSize.alt = name;
+
+function openPopupImg(link, name) {
+    const imgPopup = new PopupWithImage(popupOpenImg, "popup_opened", buttonsClose, link, name);
+    imgPopup.open(popupImgFullSize, popupCaption);
+    imgPopup.setEventListeners();
 }
-//открываем popup с карточками
-buttonOpenCards.addEventListener("click", openPopupCard);
-// открываем popup и подставояем значения из profileName и profileJob при помоще функции openPopup
-buttonOpenProfile.addEventListener("click", openPopupProfile);
+
+//открываем popups
+btnOpenCard.addEventListener("click", openPopupCard);
+btnOpenProfile.addEventListener("click", openPopupProfile);
 // Обработчик «отправки» формы profile
 function handleFormProfileSubmit(evt) {
     evt.preventDefault();
@@ -97,6 +107,5 @@ function handleFormCardSubmit(evt) {
 // Прикрепляем обработчик к форме:
 formElementProfile.addEventListener("submit", handleFormProfileSubmit);
 formElementCard.addEventListener("submit", handleFormCardSubmit);
-
-
 initRenderCard(initialCards);
+

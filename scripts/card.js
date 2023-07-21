@@ -1,9 +1,11 @@
+
+
 class Card {
-    constructor(data, templateSelector, /*openPoupImgFullSize*/) {
+    constructor(data, templateSelector, openPopup) {
         this._name = data.name;
         this._link = data.link;
         this._templateSelector = templateSelector;
-        //this._openPoupImgFullSize = openPoupImgFullSize;
+        this._openPopup = openPopup;
     }
 
     _getTemplate() { 
@@ -41,9 +43,9 @@ class Card {
             this._handleCardDelete();
         });
 
-        //this._btnPopupImgOpen.addEventListener("click", () => {
-            //this._openPoupImgFullSize(this._name, this._link);
-        //});
+        this._btnPopupImgOpen.addEventListener("click", () => {
+           this._openPopup(this._cardImg.src, this._cardTitle);
+        })
     }
 }
 export { Card };

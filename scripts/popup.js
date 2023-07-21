@@ -7,12 +7,12 @@ export class Popup {
 
     open() {
         this._popupSelector.classList.add(this._openingSelector);
-
+        document.addEventListener("keydown",  this._handleEscClose.bind(this));
     }
 
     close() {
         this._popupSelector.classList.remove(this._openingSelector);
-        document.removeEventListener('keydown', this._handleEscClose);
+        document.removeEventListener('keydown', this._handleEscClose.bind(this));
     }
 
     _handleEscClose(evt) {
@@ -28,9 +28,6 @@ export class Popup {
                 this.close();
         }});
 
-        document.addEventListener("keydown", (evt) => {
-            this._handleEscClose(evt);
-    })
 
     this._btns.forEach((btn) => {
         btn.addEventListener("click", (evt) => {
@@ -40,3 +37,4 @@ export class Popup {
     });
     }
 }
+
