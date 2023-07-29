@@ -1,8 +1,8 @@
 import { Popup } from "./popup.js";
 
 export  class PopupWithImage extends Popup {
-    constructor(popupSelector, openingSelector, btns, link, name){
-        super(popupSelector, openingSelector, btns);
+    constructor(popupSelector, openingSelector, btns, form, link, name){
+        super(popupSelector, openingSelector, btns, form);
         this._link = link;
         this._name = name; 
     }
@@ -11,12 +11,12 @@ export  class PopupWithImage extends Popup {
         htmlLink.src = this._link;
         htmlName.textContent = this._name;
         htmlLink.alt = this._name;
-        //console.log(htmlLink);
-        //console.log(this._link);
-        //console.log(htmlName);
-        //console.log(this._name)
-        super.open(); 
+        super.open();
     }
 
-
+    close() {
+        this._popupSelector.classList.remove(this._openingSelector);
+        document.removeEventListener('keydown', this._handleEscClose.bind(this));
+        console.log(this)
+    }
 }
