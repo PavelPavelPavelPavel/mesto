@@ -71,10 +71,6 @@ class FormValidator {
       this._submitButton.removeAttribute("disabled");
   }
 
-  //resetForm() {
-      //this._form.reset();
-  //}
-
   _setEventListeners() {
       this._inputsList.forEach((inputValue) => {
           inputValue.addEventListener("input", () => {

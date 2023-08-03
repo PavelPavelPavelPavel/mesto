@@ -4,37 +4,44 @@ export class Popup {
         this._openingSelector = openingSelector;
         this._btns = btns;
         this._form = form;
+        this._handleEscClose = this._handleEscClose.bind(this);
+        this._handleBtnCrossClose = this._handleBtnCrossClose.bind(this);
     }
 
     open() {
+        document.addEventListener("keydown", this._handleEscClose);
         this._popupSelector.classList.add(this._openingSelector);
-        document.addEventListener("keydown",  this._handleEscClose.bind(this));
     }
 
     close() {
+        document.removeEventListener("keydown", this._handleEscClose);
         this._popupSelector.classList.remove(this._openingSelector);
-        document.removeEventListener('keydown', this._handleEscClose.bind(this));
+        this._btns.forEach((btn) => {
+            btn.removeEventListener("click", this._handleBtnCrossClose);
+        });
     }
 
     _handleEscClose(evt) {
         if (evt.key === "Escape") {
-           this.close();
-     }
+            this.close();
+        }
     }
 
+    _handleBtnCrossClose(evt) {
+        const item = evt.target.closest(".popup");
+        item.classList.remove(this._openingSelector);
+        this.close();
+    }
 
     setEventListeners() {
-    this._popupSelector.addEventListener("mousedown", (evt) => {
+        this._popupSelector.addEventListener("mousedown", (evt) => {
             if (evt.target === evt.currentTarget) {
                 this.close();
-        }});
-    
-    this._btns.forEach((btn) => {
-        btn.addEventListener("click", (evt) => {
-            const item = evt.target.closest(".popup");
-            item.classList.remove(this._openingSelector);
-            this.close();
+            }
         });
-    });
+
+        this._btns.forEach((btn) => {
+            btn.addEventListener("click", this._handleBtnCrossClose);
+        });
     }
 }
