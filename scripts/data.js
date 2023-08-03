@@ -1,28 +1,28 @@
 //массив с карточками
 const initialCards = [
     {
-        name: "Архыз",
-        link: "https://pictures.s3.yandex.net/frontend-developer/cards-compressed/arkhyz.jpg",
+        name: "После дождя",
+        link: "https://avatars.dzeninfra.ru/get-zen_doc/51478/pub_5be9912c0a47b500aab03627_5be9919fc5937400aa07cfac/scale_1200",
     },
     {
-        name: "Челябинская область",
-        link: "https://pictures.s3.yandex.net/frontend-developer/cards-compressed/chelyabinsk-oblast.jpg",
+        name: "Красный закат",
+        link: "https://enotnavolge.ru/wp-content/uploads/5/b/0/5b020185b97ed0eef77da9b5ba38248a.jpeg",
     },
     {
-        name: "Иваново",
-        link: "https://pictures.s3.yandex.net/frontend-developer/cards-compressed/ivanovo.jpg",
+        name: "Радуга",
+        link: "https://i01.fotocdn.net/s130/eab97c65940b670a/public_pin_l/2933879329.jpg",
     },
     {
-        name: "Камчатка",
-        link: "https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kamchatka.jpg",
+        name: "Березовая роща",
+        link: "https://velikieludimira.ru/wp-content/uploads/berezovaja_rozha_1879.jpg",
     },
     {
-        name: "Холмогорский район",
-        link: "https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kholmogorsky-rayon.jpg",
+        name: "Ай-Петри",
+        link: "https://cont.ws/uploads/posts2/1214899.jpg",
     },
     {
-        name: "Байкал",
-        link: "https://pictures.s3.yandex.net/frontend-developer/cards-compressed/baikal.jpg",
+        name: "Ночь на Днепре",
+        link: "https://sun9-61.userapi.com/impg/5oKerSzTNWjrCratUt3oFcrs56WftP0bM3dfEA/uMxh0LZkdX4.jpg?size=1280x905&quality=96&sign=a7189184d3d401a31cfb786c48413687&type=album",
     },
 ];
 
