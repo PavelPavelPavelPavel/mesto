@@ -13,10 +13,7 @@ const profileValidity = new FormValidator(validationConfig, formProfile);
 const cardForm = new PopupWithForm(popupEditCards, "popup_opened", formCard, ".popup__value", handleFormCardSubmit);
 const profileForm = new PopupWithForm(popupEditForm, "popup_opened", formProfile, ".popup__value", handleFormProfileSubmit);
 
-const userInfo = new UserInfo({
-    name: ".profile__name",
-    work: ".profile__work",
-});
+const userInfo = new UserInfo(".profile__name", ".profile__work",);
 
 const imgPopup = new PopupWithImage(popupOpenImg, "popup_opened");
 imgPopup.setEventListeners();
