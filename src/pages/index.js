@@ -16,7 +16,7 @@ const profileForm = new PopupWithForm(popupEditForm, "popup_opened", formProfile
 const userInfo = new UserInfo(".profile__name", ".profile__work",);
 
 const imgPopup = new PopupWithImage(popupOpenImg, "popup_opened");
-imgPopup.setEventListeners();
+
 
 const defaultCard = new Section(
     {
@@ -79,6 +79,7 @@ defaultCard.renderItems();
 
 profileForm.setEventListeners();
 cardForm.setEventListeners();
+imgPopup.setEventListeners();
 cardValidity.enableValidation();
 profileValidity.enableValidation();
 btnOpenCard.addEventListener("click", openPopupCard);
