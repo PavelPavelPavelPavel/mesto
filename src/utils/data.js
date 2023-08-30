@@ -35,4 +35,20 @@ const validationConfig = {
     errorClass: "popup__error",
 };
 
-export { initialCards, validationConfig };
+const popupEditForm = document.querySelector(".popup_edit_form");
+const popupEditCards = document.querySelector(".popup_edit_cards");
+const popupOpenImg = document.querySelector(".popup_edit_img");
+const btnOpenProfile = document.querySelector(".profile__button");
+const btnOpenCard = document.querySelector(".profile__add-button");
+const formCard = document.querySelector(".popup__input-card");
+const formProfile = document.querySelector(".popup__input-profile");
+
+export { initialCards, 
+    validationConfig, 
+    popupEditForm, 
+    popupEditCards, 
+    popupOpenImg, 
+    btnOpenProfile, 
+    btnOpenCard, 
+    formCard, 
+    formProfile };

@@ -5,24 +5,19 @@ export default class FormValidator {
       this._formsList = Array.from(document.querySelectorAll(this._validationConfig.form));
       this._inputsList = Array.from(this._form.querySelectorAll(this._validationConfig.inputSelector));
       this._submitButton = this._form.querySelector(this._validationConfig.submitButtonSelector);
-      this._inputsErrorSpan = Array.from(document.querySelectorAll(".popup__error"));
+      this._inputsErrorElements = Array.from(this._form.querySelectorAll(".popup__error"));
   }
 
   enableValidation() {
-      this._formsList.forEach((form) => {
-          form.addEventListener("submit", (evt) => {
-              evt.preventDefault();
-          });
+          this._form.addEventListener("submit", () => {});
           this._setEventListeners();
-      });
-  }
+      }
+  
 
-  clearingErrorInSpan() {
-      this._inputsErrorSpan.forEach((span) => {
-          span.textContent = "";
-      });
+  hideErrors() {
       this._inputsList.forEach((input) => {
           input.classList.remove(this._validationConfig.inputErrorClass);
+          this._hideInputError(input);
       });
   }
 
@@ -62,13 +57,13 @@ export default class FormValidator {
   }
 
   disableSubmitButton() {
-      this._submitButton.setAttribute("disabled", true);
+      this._submitButton.disabled = true;
       this._submitButton.classList.add(this._validationConfig.disabledButtonClass);
   }
 
   enableSubmitButton() {
       this._submitButton.classList.remove(this._validationConfig.disabledButtonClass);
-      this._submitButton.removeAttribute("disabled");
+      this._submitButton.disabled = false;
   }
 
   _setEventListeners() {

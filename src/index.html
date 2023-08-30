@@ -35,10 +35,10 @@
                     <button aria-label="Кнопка закрытия попапа" type="button" class="popup__button-close"></button>
                     <div class="popup__form popup__form_edit_profile">
                         <h2 class="popup__title">Редактировать профиль</h2>
-                        <form name="profile" id="profile" class="popup__input-wrapper" novalidate>
+                        <form name="profile" class="popup__input-wrapper popup__input-profile" novalidate>
                             <input id="input-name" type="text" name="name" required class="popup__value popup__value_field_name" minlength="2" maxlength="40" placeholder="Name" />
                             <span id="input-name-error" class="popup__error"></span>
-                            <input id="input-job" type="text" name="job" required class="popup__value popup__value_field_job" minlength="2" maxlength="200" placeholder="About me" />
+                            <input id="input-job" type="text" name="job" required class="popup__value popup__value_field_work" minlength="2" maxlength="200" placeholder="About me" />
                             <span id="input-job-error" class="popup__error"></span>
                             <button type="submit" class="popup__button popup__button-profile">Сохранить</button>
                         </form>
@@ -50,7 +50,7 @@
                     <button aria-label="Кнопка закрытия попапа" type="button" class="popup__button-close"></button>
                     <div class="popup__form popup__form_edit_cards">
                         <h2 class="popup__title">Новое место</h2>
-                        <form name="card" id="card" class="popup__input-wrapper" novalidate>
+                        <form name="card" class="popup__input-wrapper popup__input-card" novalidate>
                             <input id="input-place" type="text" name="place" required class="popup__value popup__value_field_place" minlength="2" maxlength="30" placeholder="Place" />
                             <span id="input-place-error" class="popup__error"></span>
                             <input id="input-url" type="url" name="URL" required class="popup__value popup__value_field_url" placeholder="URL" />
@@ -61,7 +61,7 @@
                 </div>
             </div>
             <div class="popup popup_edit_img">
-                <figure id="image" class="popup__figure">
+                <figure class="popup__figure popup__figure-image">
                     <button aria-label="Кнопка закрытия попапа" type="button" class="popup__button-close"></button>
                     <img src="#" alt="" class="popup__img" />
                     <figcaption class="popup__caption"></figcaption>

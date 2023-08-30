@@ -1,15 +1,19 @@
 
 
 export default class Card {
-    constructor(data, templateSelector, openPopup) {
+    constructor(data, templateSelector, handleImageClick) {
         this._name = data.name;
         this._link = data.link;
         this._templateSelector = templateSelector;
-        this._openPopup = openPopup;
+        this._handleImageClick = handleImageClick;
     }
 
     _getTemplate() { 
-        const cardElement = document.querySelector(this._templateSelector).content.querySelector(".element").cloneNode(true);
+        const cardElement = document
+        .querySelector(this._templateSelector)
+        .content
+        .querySelector(".element")
+        .cloneNode(true);
         return cardElement;
     }
 
@@ -28,6 +32,7 @@ export default class Card {
 
     _handleCardDelete() {
         this._element.remove();
+        this._element = null;
     }
 
     _handleCardLike() {
@@ -44,7 +49,7 @@ export default class Card {
         });
 
         this._btnPopupImgOpen.addEventListener("click", () => {
-           this._openPopup(this._cardImg.src, this._cardTitle);
+           this._handleImageClick(this._link, this._name);
         })
     }
 }
