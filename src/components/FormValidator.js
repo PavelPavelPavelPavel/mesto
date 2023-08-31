@@ -9,14 +9,12 @@ export default class FormValidator {
   }
 
   enableValidation() {
-          this._form.addEventListener("submit", () => {});
           this._setEventListeners();
       }
   
 
   hideErrors() {
       this._inputsList.forEach((input) => {
-          input.classList.remove(this._validationConfig.inputErrorClass);
           this._hideInputError(input);
       });
   }

@@ -42,6 +42,8 @@ const btnOpenProfile = document.querySelector(".profile__button");
 const btnOpenCard = document.querySelector(".profile__add-button");
 const formCard = document.querySelector(".popup__input-card");
 const formProfile = document.querySelector(".popup__input-profile");
+const nameInput = document.querySelector(".popup__value_field_name");
+const jobInput = document.querySelector(".popup__value_field_work");
 
 export { initialCards, 
     validationConfig, 
@@ -51,4 +53,6 @@ export { initialCards,
     btnOpenProfile, 
     btnOpenCard, 
     formCard, 
-    formProfile };
+    formProfile,
+    nameInput,
+    jobInput };
