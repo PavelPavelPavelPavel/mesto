@@ -1,94 +1,84 @@
 <!DOCTYPE html>
 <html lang="ru">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Место</title>
-    <link rel="stylesheet" href="./pages/index.css">
-</head>
-<body class="main">
-    <div class="page">
-        <header class="header">
-        <img src="/images/logo.svg" alt="Место" class="header__logo">
-        </header>
-        <main class="content">
-            <section class="profile">
-               <div class="profile__info">
-                <div class="profile__avatar">
-                    <img src="/images/avatar-photo.jpg" alt="Жак Ив Кусто" class="profile__avatar-img">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+        <title>Место</title>
+    <script defer src="main.684727b6350d7e3cac80.js"></script><link href="main.css" rel="stylesheet"></head>
+    <body class="main">
+        <div class="page">
+            <header class="header">
+                <img src="images/logo.bbe2a6eafac19c3d031c.svg" alt="Место" class="header__logo" />
+            </header>
+            <main class="content">
+                <section class="profile">
+                    <div class="profile__info">
+                        <div class="profile__avatar">
+                            <img src="images/avatar-photo.5d751387b90ffceb258e.jpg" alt="Аватар пользователя" class="profile__avatar-img" />
+                        </div>
+                        <div class="profile__info-text">
+                            <h1 class="profile__name">Куинджи&nbsp;Архип</h1>
+                            <button aria-label="Кнопка редактирования профиля" type="button" class="profile__button"></button>
+                            <p class="profile__work">Художник</p>
+                        </div>
+                    </div>
+                    <button aria-label="Кнопка добавления фото" type="button" class="profile__add-button"></button>
+                </section>
+                <section class="elements"></section>
+            </main>
+            <footer class="footer">
+                <p class="footer__copyright">© 2020 Mesto Russia</p>
+            </footer>
+            <div class="popup popup_edit_form">
+                <div class="popup__container">
+                    <button aria-label="Кнопка закрытия попапа" type="button" class="popup__button-close"></button>
+                    <div class="popup__form popup__form_edit_profile">
+                        <h2 class="popup__title">Редактировать профиль</h2>
+                        <form name="profile" class="popup__input-wrapper popup__input-profile" novalidate>
+                            <input id="input-name" type="text" name="name" required class="popup__value popup__value_field_name" minlength="2" maxlength="40" placeholder="Name" />
+                            <span id="input-name-error" class="popup__error"></span>
+                            <input id="input-job" type="text" name="job" required class="popup__value popup__value_field_work" minlength="2" maxlength="200" placeholder="About me" />
+                            <span id="input-job-error" class="popup__error"></span>
+                            <button type="submit" class="popup__button popup__button-profile">Сохранить</button>
+                        </form>
+                    </div>
                 </div>
-                <div class="profile__info-text">
-                <p class="profile__name">Жак-Ив&nbsp;Кусто</p>
-                <button class="profile__button"></button>
-                <p class="profile__work">Исследователь океана</p>
+            </div>
+            <div class="popup popup_edit_cards">
+                <div class="popup__container">
+                    <button aria-label="Кнопка закрытия попапа" type="button" class="popup__button-close"></button>
+                    <div class="popup__form popup__form_edit_cards">
+                        <h2 class="popup__title">Новое место</h2>
+                        <form name="card" class="popup__input-wrapper popup__input-card" novalidate>
+                            <input id="input-place" type="text" name="name" required class="popup__value popup__value_field_place" minlength="2" maxlength="30" placeholder="Place" />
+                            <span id="input-place-error" class="popup__error"></span>
+                            <input id="input-url" type="url" name="link" required class="popup__value popup__value_field_url" placeholder="URL" />
+                            <span id="input-url-error" class="popup__error"></span>
+                            <button type="submit" class="popup__button popup__button-card popup__button_disabled" disabled>Создать</button>
+                        </form>
+                    </div>
                 </div>
-               </div>
-               <button class="profile__add-button">
-               </button>
-            </section>
-            <section class="elements">
-                <article class="element">
-                    <img src="./images/карачаево-черкессия.jpg" alt="Часовня на скале" class="element__img">
-                    <div class="element__wrapper">
-                        <h2 class="element__title">Карачаево-Черкессия</h2>
-                    <button class="element__button-like"></button>
-                </div> 
-                </article>
-                <article class="element">
-                    <img src="./images/эльбрус.jpg" alt="гора со снежной шапкой" class="element__img">
-                    <div class="element__wrapper">
-                    <h2 class="element__title">Гора Эльбрус</h2>
-                    <button class="element__button-like"></button>
-                </div>
-                </article>
-                <article class="element">
-                    <img src="./images/домбай.jpg" alt="автомобильная дорога через лес" class="element__img">
-                    <div class="element__wrapper">
-                    <h2 class="element__title">Домбай</h2>
-                    <button class="element__button-like"></button>
-                </div>
-                </article>
-                <article class="element">
-                    <img src="./images/карелия.jpg" alt="тропа через осенний лес" class="element__img">
-                    <div class="element__wrapper">
-                    <h2 class="element__title">Карлия</h2>
-                    <button class="element__button-like"></button>
-                </div>
-                </article>
-                <article class="element">
-                    <img src="./images/питер.jpg" alt="дом с башней" class="element__img">
-                    <div class="element__wrapper">
-                    <h2 class="element__title">Питер</h2>
-                    <button class="element__button-like"></button>
-                </div>
-                </article>
-                <article class="element">
-                    <img src="./images/байкал.jpg" alt="машина на льду байкала" class="element__img">
-                    <div class="element__wrapper">
-                    <h2 class="element__title">Байкал</h2>
-                    <button class="element__button-like"></button>
-                </div>
-                </article>
-            </section>
-        </main>
-        <footer class="footer">
-            <p class="footer__copyright">© 2020 Mesto Russia</p>
-        </footer>
-        <div class="popup">
-            <form class="popup__container">
-                <button class="popup__button-close"></button>
-                <h2 class="popup__title">Редактировать профиль</h2>
-                <fieldset class="popup__input-wrapper">
-                <input type="text" class="popup__name" value="Жак-Ив&nbsp;Кусто&nbsp;">
-                <input type="text" class="popup__profession" value="Исследователь океана">
-                </fieldset>
-                <fieldset class="popup__input-wrapper">
-                <button type="submit" class="popup__button">Сохранить</button>
-                </fieldset>
-            </form>
+            </div>
+            <div class="popup popup_edit_img">
+                <figure class="popup__figure popup__figure-image">
+                    <button aria-label="Кнопка закрытия попапа" type="button" class="popup__button-close"></button>
+                    <img src="#" alt="" class="popup__img" />
+                    <figcaption class="popup__caption"></figcaption>
+                </figure>
+            </div>
         </div>
-    </div>
-    <script src="./scripts/index.js"></script>
-</body>
+        <template class="template">
+            <article class="element">
+                <button type="button" class="element__button-delete"></button>
+                <button class="element__link">
+                    <img src="#" alt="" class="element__img" />
+                </button>
+                <div class="element__wrapper">
+                    <h2 class="element__title"></h2>
+                    <button type="button" class="element__button-like"></button>
+                </div>
+            </article>
+        </template>
+    </body>
 </html>
