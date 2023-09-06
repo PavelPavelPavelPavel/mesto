@@ -1,5 +1,5 @@
 import "./index.css";
-import { initialCards, validationConfig, popupEditForm, popupEditCards, popupOpenImg, btnOpenProfile, btnOpenCard, formCard, formProfile, nameInput, jobInput } from "../utils/data.js";
+import { initialCards, validationConfig, popupEditForm, popupEditCards, popupOpenImg, btnOpenProfile, btnOpenCard, formCard, formProfile, nameInput, jobInput, userAvatar, userName, userWork } from "../utils/data.js";
 import FormValidator from "../components/FormValidator.js";
 import Card from "../components/Card.js";
 import Section from "../components/Section.js";
@@ -13,24 +13,29 @@ const profileValidity = new FormValidator(validationConfig, formProfile);
 const cardForm = new PopupWithForm(popupEditCards, "popup_opened", formCard, ".popup__value", handleFormCardSubmit);
 const profileForm = new PopupWithForm(popupEditForm, "popup_opened", formProfile, ".popup__value", handleFormProfileSubmit);
 
-const userInfo = new UserInfo(".profile__name", ".profile__work");
+const userInfo = new UserInfo(userName, userWork, userAvatar);
 
 const imgPopup = new PopupWithImage(popupOpenImg, "popup_opened");
 
-const cardSection = new Section(
-    {
-        items: initialCards,
-        renderer: (cardItem) => {
-            const newCards = createCard(cardItem);
-            cardSection.addItem(newCards);
-        },
-    },
-    ".elements"
-);
 
-function createCard(arr) {
+//const cardSection = new Section(
+    //{
+        //items: initialCards,
+        //renderer: (cardItem) => {
+           // const newCards = createCard(cardItem);
+            //cardSection.addItem(newCards);
+        //},
+    //},
+    //".elements"
+//);
+
+function createCard(arr) { // функция создания новой карточки
     const card = new Card(arr, ".template", openPopupImg);
     const cardElement = card.generateCard();
+    //card.getCards('https://nomoreparties.co/v1/cohort-75/cards')
+    //.then((cards) => {
+        //console.log(cards)
+    //});
     return cardElement;
 }
 
@@ -38,6 +43,7 @@ function setProfileFormCurrentValues() {
     const info = userInfo.getUserInfo();
     nameInput.value = info.name;
     jobInput.value = info.work;
+
 }
 
 function openPopupProfile() {
@@ -62,13 +68,24 @@ function handleFormProfileSubmit(inputs) {
     profileForm.close();
 }
 
+
 function handleFormCardSubmit(inputs) {
+    //setNewCard('https://mesto.nomoreparties.co/v1/cohort-75/cards', inputs);
     const newCard = createCard(inputs);
-    cardSection.addItem(newCard);
+    //cardSection.addItem(newCard);
     cardForm.close();
 }
 
-cardSection.renderItems();
+
+//cardSection.renderItems();
+userInfo.getUserData()
+  .then((result) => {
+        userName.textContent = result.name;
+        userWork.textContent = result.about;
+        userAvatar.src = result.avatar;
+  })
+  .catch((err) => console.log(`ОШИБКА ${err}`));
+
 
 profileForm.setEventListeners();
 cardForm.setEventListeners();
@@ -77,3 +94,46 @@ cardValidity.enableValidation();
 profileValidity.enableValidation();
 btnOpenCard.addEventListener("click", openPopupCard);
 btnOpenProfile.addEventListener("click", openPopupProfile);
+
+function test() {
+    return fetch('https://mesto.nomoreparties.co/v1/cohort-75/cards', {
+    headers: {
+    authorization: '7185bb30-8f87-45c0-b11e-99f8eecf1653'
+}
+})
+.then(res => {
+    if(res.ok) {
+       return res.json()
+    }
+})
+.then((data) => {
+    const cardSection = new Section(
+        {
+            items: data,
+            renderer: (cardItem) => {
+                const newCards = createCard(cardItem);
+                cardSection.addItem(newCards);
+            },
+        },
+        ".elements"
+    );
+    cardSection.renderItems();
+})
+}
+
+test();
+
+/*function setNewCard(url, inputs, authorization ='7185bb30-8f87-45c0-b11e-99f8eecf1653') {
+    fetch(url, {
+    method: 'POST',
+    headers: {
+    authorization: authorization,
+    'Content-Type': 'application/json'
+  },
+  body: JSON.stringify({
+    link: `${inputs.link}`,
+    name: `${inputs.name}`
+  })
+}); 
+}*/
+

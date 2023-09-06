@@ -44,6 +44,9 @@ const formCard = document.querySelector(".popup__input-card");
 const formProfile = document.querySelector(".popup__input-profile");
 const nameInput = document.querySelector(".popup__value_field_name");
 const jobInput = document.querySelector(".popup__value_field_work");
+const userAvatar = document.querySelector(".profile__avatar-img");
+const userName = document.querySelector(".profile__name");
+const userWork = document.querySelector(".profile__work");
 
 export { initialCards, 
     validationConfig, 
@@ -55,4 +58,8 @@ export { initialCards,
     formCard, 
     formProfile,
     nameInput,
-    jobInput };
+    jobInput,
+    userAvatar,
+    userName,
+    userWork
+ };
