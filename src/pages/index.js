@@ -17,27 +17,24 @@ const userInfo = new UserInfo(userName, userWork, userAvatar);
 
 const imgPopup = new PopupWithImage(popupOpenImg, "popup_opened");
 
+const cardSection = new Section({
+    renderer: (items) => {
+        const newCard = createCard(items);
+        cardSection.addItem(newCard);
+    }
+},".elements");
 
-//const cardSection = new Section(
-    //{
-        //items: initialCards,
-        //renderer: (cardItem) => {
-           // const newCards = createCard(cardItem);
-            //cardSection.addItem(newCards);
-        //},
-    //},
-    //".elements"
-//);
 
 function createCard(arr) { // функция создания новой карточки
-    const card = new Card(arr, ".template", openPopupImg);
-    const cardElement = card.generateCard();
-    //card.getCards('https://nomoreparties.co/v1/cohort-75/cards')
-    //.then((cards) => {
-        //console.log(cards)
-    //});
-    return cardElement;
+   const card = new Card(arr, ".template", openPopupImg);
+   const cardElement = card.generateCard();
+   //card.getCards('https://nomoreparties.co/v1/cohort-75/cards')
+   //.then((cards) => {
+       //console.log(cards)
+   //});
+   return cardElement;
 }
+
 
 function setProfileFormCurrentValues() {
     const info = userInfo.getUserInfo();
@@ -70,9 +67,9 @@ function handleFormProfileSubmit(inputs) {
 
 
 function handleFormCardSubmit(inputs) {
-    //setNewCard('https://mesto.nomoreparties.co/v1/cohort-75/cards', inputs);
+    setNewCard('https://mesto.nomoreparties.co/v1/cohort-75/cards', inputs);
     const newCard = createCard(inputs);
-    //cardSection.addItem(newCard);
+    cardSection.addItem(newCard);
     cardForm.close();
 }
 
@@ -86,15 +83,6 @@ userInfo.getUserData()
   })
   .catch((err) => console.log(`ОШИБКА ${err}`));
 
-
-profileForm.setEventListeners();
-cardForm.setEventListeners();
-imgPopup.setEventListeners();
-cardValidity.enableValidation();
-profileValidity.enableValidation();
-btnOpenCard.addEventListener("click", openPopupCard);
-btnOpenProfile.addEventListener("click", openPopupProfile);
-
 function test() {
     return fetch('https://mesto.nomoreparties.co/v1/cohort-75/cards', {
     headers: {
@@ -107,27 +95,15 @@ function test() {
     }
 })
 .then((data) => {
-    const cardSection = new Section(
-        {
-            items: data,
-            renderer: (cardItem) => {
-                const newCards = createCard(cardItem);
-                cardSection.addItem(newCards);
-            },
-        },
-        ".elements"
-    );
-    cardSection.renderItems();
+    cardSection.renderItems(data)
 })
 }
 
-test();
-
-/*function setNewCard(url, inputs, authorization ='7185bb30-8f87-45c0-b11e-99f8eecf1653') {
+function setNewCard(url, inputs) {
     fetch(url, {
     method: 'POST',
     headers: {
-    authorization: authorization,
+    authorization: '7185bb30-8f87-45c0-b11e-99f8eecf1653',
     'Content-Type': 'application/json'
   },
   body: JSON.stringify({
@@ -135,5 +111,20 @@ test();
     name: `${inputs.name}`
   })
 }); 
-}*/
+}
+
+test();
+profileForm.setEventListeners();
+cardForm.setEventListeners();
+imgPopup.setEventListeners();
+cardValidity.enableValidation();
+profileValidity.enableValidation();
+btnOpenCard.addEventListener("click", openPopupCard);
+btnOpenProfile.addEventListener("click", openPopupProfile);
+
+
+
+
+
+
 

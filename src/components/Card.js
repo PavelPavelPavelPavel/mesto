@@ -31,18 +31,6 @@ export default class Card {
         return this._element;
     }
 
-    getCards(url) {
-        return fetch(url, {
-            headers: {
-            authorization: '7185bb30-8f87-45c0-b11e-99f8eecf1653'
-        }
-     })
-        .then(res => {
-            if(res.ok) {
-               return res.json()
-            }
-        })
-    }
 
     _handleCardDelete() {
         this._element.remove();
