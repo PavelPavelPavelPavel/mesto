@@ -9,7 +9,6 @@ export default class Card {
         this._handleImageClick = handleImageClick;
         this._handleCardDel = handleCardDel;
         this._handleOpenPopupCardDelete =  handleOpenPopupCardDelete;
-        this._handleCardLike = this._handleCardLike.bind(this);
     }
 
     _getTemplate() { 
@@ -20,7 +19,6 @@ export default class Card {
         .cloneNode(true);
         return cardElement;
     }
-
 
     generateCard() {
         this._element = this._getTemplate();

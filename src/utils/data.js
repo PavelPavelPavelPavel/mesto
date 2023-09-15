@@ -12,10 +12,13 @@ const popupEditForm = document.querySelector(".popup_edit_form");
 const popupEditCards = document.querySelector(".popup_edit_cards");
 const popupOpenImg = document.querySelector(".popup_edit_img");
 const popupConfirmCardDelete = document.querySelector(".popup_edit_delete-card");
+const popupEditAvatar = document.querySelector(".popup_edit_avatar");
 const btnOpenProfile = document.querySelector(".profile__button");
 const btnOpenCard = document.querySelector(".profile__add-button");
+const btnOpenAvatar = document.querySelector(".profile__avatar-btn");
 const formCard = document.querySelector(".popup__input-card");
 const formProfile = document.querySelector(".popup__input-profile");
+const formAvatar = document.querySelector(".popup__input-avatar");
 const nameInput = document.querySelector(".popup__value_field_name");
 const jobInput = document.querySelector(".popup__value_field_work");
 const userAvatar = document.querySelector(".profile__avatar-img");
@@ -28,10 +31,13 @@ export {
     popupEditCards,
     popupOpenImg, 
     popupConfirmCardDelete,
+    popupEditAvatar,
     btnOpenProfile, 
-    btnOpenCard, 
+    btnOpenCard,
+    btnOpenAvatar,
     formCard, 
     formProfile,
+    formAvatar,
     nameInput,
     jobInput,
     userAvatar,

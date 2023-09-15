@@ -1,5 +1,5 @@
 import "./index.css";
-import { validationConfig, popupEditForm, popupEditCards, popupOpenImg, popupConfirmCardDelete, btnOpenProfile, btnOpenCard, formCard, formProfile, nameInput, jobInput, userAvatar, userName, userWork } from "../utils/data.js";
+import { validationConfig, popupEditForm, popupEditCards, popupOpenImg, popupConfirmCardDelete, popupEditAvatar, btnOpenProfile, btnOpenCard, btnOpenAvatar, formCard, formProfile, formAvatar, nameInput, jobInput, userAvatar, userName, userWork } from "../utils/data.js";
 import FormValidator from "../components/FormValidator.js";
 import Card from "../components/Card.js";
 import Section from "../components/Section.js";
@@ -11,8 +11,10 @@ import PopupWithConfirm from "../components/PopupWithConfirm";
 
 const cardValidity = new FormValidator(validationConfig, formCard);
 const profileValidity = new FormValidator(validationConfig, formProfile);
+const avatarValidity = new FormValidator(validationConfig, formAvatar);
 const cardForm = new PopupWithForm(popupEditCards, formCard, ".popup__value", handleFormCardSubmit);
 const profileForm = new PopupWithForm(popupEditForm, formProfile, ".popup__value", handleFormProfileSubmit);
+const avatarForm = new PopupWithForm(popupEditAvatar, formAvatar, ".popup__value", handleFormAvatarSubmit);
 const imgPopup = new PopupWithImage(popupOpenImg);
 const deleteCardConfirmPopup = new PopupWithConfirm(popupConfirmCardDelete, ".popup__button-confirm");
 
@@ -59,7 +61,6 @@ function openPopupConfirmDelete(id) {
     deleteCardConfirmPopup.open(id);
 }
 
-
 function openPopupCard() {
     cardForm.open();
     cardValidity.hideErrors();
@@ -68,6 +69,16 @@ function openPopupCard() {
 
 function openPopupImg(link, name) {
     imgPopup.open(link, name);
+}
+
+function openPopupAvatar() {
+    avatarForm.open();
+    avatarValidity.hideErrors();
+    avatarValidity.disableSubmitButton();
+}
+
+function handleFormAvatarSubmit(inputs) {
+    avatarForm.close();
 }
 
 function handleFormProfileSubmit(inputs) {
@@ -86,26 +97,31 @@ function handleFormCardSubmit(inputs) {
 
 
 api.getInfo('users/me') 
-  .then((result) => {
-        userName.textContent = result.name;
-        userWork.textContent = result.about;
-        userAvatar.src = result.avatar;
+  .then((res) => {
+        userName.textContent = res.name;
+        userWork.textContent = res.about;
+        userAvatar.src = res.avatar;
   })
   
 api.getInfo('cards')
   .then((data) => {
-      console.log(data[0])
+      //console.log(data[0])
+      //console.log(data[0].owner._id)
+      //console.log(data)
       cardSection.renderItems(data)
   })
 
 profileForm.setEventListeners();
 cardForm.setEventListeners();
 imgPopup.setEventListeners();
+avatarForm.setEventListeners();
 deleteCardConfirmPopup.setEventListeners();
 cardValidity.enableValidation();
 profileValidity.enableValidation();
+avatarValidity.enableValidation();
 btnOpenCard.addEventListener("click", openPopupCard);
 btnOpenProfile.addEventListener("click", openPopupProfile);
+btnOpenAvatar.addEventListener("click", openPopupAvatar);
 
 
 
