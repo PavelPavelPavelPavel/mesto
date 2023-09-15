@@ -36,7 +36,7 @@ export default class Api {
     }
 
     
-    setUserData(url, nameUser, workUser) {
+    setUserData(url, inputsName, inputsWork) {
         return fetch(`${this._mainUrl}${url}`, {
             method: "PATCH",
             headers: {
@@ -44,8 +44,22 @@ export default class Api {
                 "Content-Type": "application/json",
             },
             body: JSON.stringify({
-                name: nameUser,
-                about: workUser,
+                name: inputsName,
+                about: inputsWork,
+            }),
+        })
+        .catch((err) => console.log(`ОШИБКА ${err}`));
+    }
+    
+    setUserAvatar(url, inputAvatar) {
+        return fetch(`${this._mainUrl}${url}`, {
+            method: "PATCH",
+            headers: {
+                authorization: this._authorization,
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify({
+                avatar: inputAvatar,
             }),
         })
         .catch((err) => console.log(`ОШИБКА ${err}`));

@@ -50,6 +50,7 @@ function setProfileFormCurrentValues() {
     jobInput.value = info.work;
 }
 
+
 function openPopupProfile() {
     setProfileFormCurrentValues();
     profileForm.open();
@@ -77,13 +78,15 @@ function openPopupAvatar() {
     avatarValidity.disableSubmitButton();
 }
 
-function handleFormAvatarSubmit(inputs) {
+function handleFormAvatarSubmit(input) {
+    api.setUserAvatar('users/me/avatar', input.link);
+    userAvatar.src = input.link;
     avatarForm.close();
 }
 
 function handleFormProfileSubmit(inputs) {
     userInfo.setUserInfo(inputs.name, inputs.job);
-    api.setUserData('users/me', inputs.name, inputs.job);
+    api.setUserData('users/me', inputs.name, inputs.job)
     profileForm.close();
 }
 
