@@ -42,5 +42,5 @@ export {
     jobInput,
     userAvatar,
     userName,
-    userWork
+    userWork,
  };

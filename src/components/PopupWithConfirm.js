@@ -24,6 +24,6 @@ export default class PopupWithConfirm extends Popup {
 
     _toAccept() {//навешиваем на кнопку подтвержления
         this._popup.classList.remove(this._openingSelector);
-        this._callBack(this.id);//вызываем функцию которая отвечает за действия кнопки
+        this._callBack(this.id);//вызываем функцию которая отвечает за действия кнопки(с данными получеными из метода open)
  }
 }

@@ -35,6 +35,17 @@ export default class Api {
         .catch((err) => console.log(`ОШИБКА ${err}`));
     }
 
+    addLikeToCard(id) {
+        return fetch(`${this._mainUrl}${id}`, {
+            method: "PUT",
+            headers: {
+                authorization: this._authorization,
+                "Content-Type": "application/json",
+            },
+        })
+        .catch((err) => console.log(`ОШИБКА ${err}`))
+    }
+
     
     setUserData(url, inputsName, inputsWork) {
         return fetch(`${this._mainUrl}${url}`, {
@@ -65,7 +76,7 @@ export default class Api {
         .catch((err) => console.log(`ОШИБКА ${err}`));
     }
 
-    deleteCard(id) {
+    deleteResponse(id) {
        return fetch(`${this._mainUrl}cards/${id}`, {
             method: "DELETE", 
             headers: {

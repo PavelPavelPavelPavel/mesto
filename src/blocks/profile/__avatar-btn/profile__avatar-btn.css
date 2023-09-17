@@ -19,6 +19,8 @@
     transition: all 0.2 linear;
 }
 
+
+
 @media screen and (max-width: 938px) {
     .profile__avatar-btn {
         margin: auto 19px auto 36px;
