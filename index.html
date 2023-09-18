@@ -5,7 +5,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <meta http-equiv="X-UA-Compatible" content="ie=edge" />
         <title>Место</title>
-    <script defer src="main.6e1fb2195f4dc4fdb023.js"></script><link href="main.css" rel="stylesheet"></head>
+    <script defer src="main.a415bc815032dcbc344f.js"></script><link href="main.css" rel="stylesheet"></head>
     <body class="main">
         <div class="page">
             <header class="header">
@@ -15,12 +15,14 @@
                 <section class="profile">
                     <div class="profile__info">
                         <div class="profile__avatar">
-                            <img src="#" alt="Аватар пользователя" class="profile__avatar-img" />
+                            <button class="profile__avatar-btn">
+                                <img src="#" alt="Аватар пользователя" class="profile__avatar-img" />
+                            </button>
                         </div>
                         <div class="profile__info-text">
-                            <h1 class="profile__name"><!--Куинджи&nbsp;Архип--></h1>
+                            <h1 class="profile__name"></h1>
                             <button aria-label="Кнопка редактирования профиля" type="button" class="profile__button"></button>
-                            <p class="profile__work"><!--Художник--></p>
+                            <p class="profile__work"></p>
                         </div>
                     </div>
                     <button aria-label="Кнопка добавления фото" type="button" class="profile__add-button"></button>
@@ -67,6 +69,28 @@
                     <figcaption class="popup__caption"></figcaption>
                 </figure>
             </div>
+            <div class="popup popup_edit_delete-card">
+                <div class="popup__container">
+                    <button aria-label="Кнопка закрытия попапа" type="button" class="popup__button-close"></button>
+                    <div class="popup__form popup__form_edit_delete-card">
+                        <h2 class="popup__title">Вы уверены?</h2>
+                        <button type="submit" class="popup__button popup__button-confirm">Да</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="popup popup_edit_avatar">
+            <div class="popup__container">
+                <button aria-label="Кнопка закрытия попапа" type="button" class="popup__button-close"></button>
+                <div class="popup__form popup__form_edit_avatar">
+                    <h2 class="popup__title">Обновить аватар</h2>
+                    <form name="avatar" class="popup__input-wrapper popup__input-avatar" novalidate>
+                        <input id="input-url-avatar" type="url" name="link" required class="popup__value popup__value_field_url" placeholder="URL" />
+                        <span id="input-url-avatar-error" class="popup__error"></span>
+                        <button type="submit" class="popup__button popup__button-avatar popup__button_disabled" disabled>Сохранить</button>
+                    </form>
+                </div>
+            </div>
         </div>
         <template class="template">
             <article class="element">
@@ -76,7 +100,10 @@
                 </button>
                 <div class="element__wrapper">
                     <h2 class="element__title"></h2>
+                    <div class="element__wrapper-btn">
                     <button type="button" class="element__button-like"></button>
+                    <p class="element__like-counter"></p>
+                </div>
                 </div>
             </article>
         </template>
