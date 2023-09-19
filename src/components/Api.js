@@ -30,24 +30,13 @@ export default class Api {
             body: JSON.stringify({
                 link: `${inputs.link}`,
                 name: `${inputs.name}`,
-            }),
+            })
         })
         .catch((err) => console.log(`ОШИБКА ${err}`));
     }
 
-    addLikeToCard(id) {
-        return fetch(`${this._mainUrl}${id}`, {
-            method: "PUT",
-            headers: {
-                authorization: this._authorization,
-                "Content-Type": "application/json",
-            },
-        })
-        .catch((err) => console.log(`ОШИБКА ${err}`))
-    }
-
     
-    setUserData(url, inputsName, inputsWork) {
+    setUserData(url, inputs) {
         return fetch(`${this._mainUrl}${url}`, {
             method: "PATCH",
             headers: {
@@ -55,8 +44,8 @@ export default class Api {
                 "Content-Type": "application/json",
             },
             body: JSON.stringify({
-                name: inputsName,
-                about: inputsWork,
+                name: `${inputs.name}`,
+                about: `${inputs.job}`,
             }),
         })
         .catch((err) => console.log(`ОШИБКА ${err}`));
@@ -84,12 +73,29 @@ export default class Api {
                 "Content-Type": "application/json"
             },
         })
-            .then((res) => {
-                if(res.ok) {
-                    return res.json()
-                }
-            })
             .catch((err) => console.log(`ОШИБКА ${err}`));
         }
+
+        deleteResponseLike(id) {
+            return fetch(`${this._mainUrl}cards/${id}/likes`, {
+                 method: "DELETE", 
+                 headers: {
+                     authorization: this._authorization,
+                     "Content-Type": "application/json"
+                 }
+             })
+                 .catch((err) => console.log(`ОШИБКА ${err}`));
+             }
+
+        addLikeToCard(id) {
+            return fetch(`${this._mainUrl}cards/${id}/likes`, {
+                    method: "PUT",
+                    headers: {
+                        authorization: this._authorization,
+                        "Content-Type": "application/json",
+                    }
+                })
+                .catch((err) => console.log(`ОШИБКА ${err}`))
+            }
        
 }

@@ -25,7 +25,6 @@ export default class PopupWithForm extends Popup {
 
     _onSubmit(evt) {
         evt.preventDefault();
-
         this._handleFormSubmit(this._getInputValues());
     }
 
