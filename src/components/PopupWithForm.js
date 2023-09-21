@@ -1,7 +1,7 @@
 import Popup from "./Popup.js";
 
 export default class PopupWithForm extends Popup {
-<<<<<<< HEAD
+
     constructor(popup, form, inputSelector, handleFormSubmit) {
         super(popup);
         this._form = form;
@@ -33,7 +33,7 @@ export default class PopupWithForm extends Popup {
         this._form.reset();
         super.close();
     }
-=======
+
   constructor(popup, form, inputSelector, handleFormSubmit) {
     super(popup);
     this._form = form;
@@ -74,5 +74,4 @@ export default class PopupWithForm extends Popup {
     this._form.reset();
     super.close();
   }
->>>>>>> gh-pages
 }

@@ -1,5 +1,5 @@
 export default class Api {
-<<<<<<< HEAD
+
     constructor() {
         this._authorization = "7185bb30-8f87-45c0-b11e-99f8eecf1653";
         this._mainUrl = "https://mesto.nomoreparties.co/v1/cohort-75/";
@@ -99,7 +99,6 @@ export default class Api {
                 .catch((err) => console.log(`ОШИБКА ${err}`))
             }
        
-=======
   constructor() {
     this._authorization = "7185bb30-8f87-45c0-b11e-99f8eecf1653";
     this._mainUrl = "https://mesto.nomoreparties.co/v1/cohort-75/";
@@ -196,5 +195,4 @@ export default class Api {
       },
     });
   }
->>>>>>> gh-pages
 }

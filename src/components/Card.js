@@ -1,5 +1,5 @@
 export default class Card {
-<<<<<<< HEAD
+
     constructor({ data, handleImageClick, handleLikeAdd, handleLikeDel, handleOpenPopupCardDelete, handleCardDel }, templateSelector, myId) {
         this._name = data.name;
         this._link = data.link;
@@ -111,7 +111,7 @@ export default class Card {
             this._handleImageClick(this._link, this._name);
         });
     }
-=======
+
   constructor(
     {
       data,
@@ -236,5 +236,4 @@ export default class Card {
       this._handleImageClick(this._link, this._name);
     });
   }
->>>>>>> gh-pages
 }
