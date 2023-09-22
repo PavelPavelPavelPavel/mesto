@@ -72,7 +72,6 @@ Promise.all([api.getInfo("users/me"), api.getInfo("cards")])
     userInfo.setUserInfo(res.name, res.about);
     userInfo.setUserAvatarFromServer(res.avatar);
     cardSection.renderItems(data);
-    //console.log(data);
   })
   .catch((err) => console.log(err));
 
@@ -85,7 +84,6 @@ function createCard(arr) {
       },
       handleLikeAdd: (id) => {
         api.addLikeToCard(id).then((like) => {
-          //console.log(like);
           card.likeAdd(like);
         });
       },
