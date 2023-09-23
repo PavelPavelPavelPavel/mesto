@@ -40,7 +40,7 @@ export default class Card {
       ".element__button-delete"
     );
     this._likesCounter = this._element.querySelector(".element__like-counter");
-    this._likesCounter.textContent = this._likes.length;
+    //this._likesCounter.textContent = this._likes.length;
     this._cardImg.src = this._link;
     this._cardImg.alt = this._name;
     this._btnPopupImgOpen = this._element.querySelector(".element__link");
@@ -48,8 +48,32 @@ export default class Card {
       ".element__title"
     ).textContent = this._name;
     this._btnCardLike = this._element.querySelector(".element__button-like");
+    this._updateLikesView();
+    this._hideTheDeleteCardButton();
     this._setEventListeners();
     return this._element;
+  }
+
+  setLikes(likes) {
+    this._likes = likes;
+    this._updateLikesView();
+  }
+
+  _updateLikesView() {
+    this._likesCounter.textContent = this._likes.length || "";
+    if (this._checkLike()) {
+      this._btnCardLike.classList.add("element__button-like_active");
+    } else {
+      this._btnCardLike.classList.remove("element__button-like_active");
+    }
+  }
+
+  _likeToggle() {
+    if (!this._checkLike() && !this._checkButtonLikeState()) {
+      this._handleLikeAdd(this._cardId);
+    } else {
+      this._handleLikeDel(this._cardId);
+    }
   }
 
   removeCard() {
@@ -71,41 +95,9 @@ export default class Card {
     return this._btnCardLike.classList.contains("element__button-like_active");
   }
 
-  hideTheDeleteCardButton() {
+  _hideTheDeleteCardButton() {
     if (this._ownerId !== this._myId) {
       this._btnCardDelete.remove();
-    }
-  }
-
-  addUserLikesToInitialCards() {
-    if (this._checkLike()) {
-      this._btnCardLike.classList.add("element__button-like_active");
-    }
-    this._zeroLike();
-  }
-
-  _likeToggle() {
-    if (!this._checkLike() && !this._checkButtonLikeState()) {
-      this._handleLikeAdd(this._cardId);
-    } else {
-      this._handleLikeDel(this._cardId);
-    }
-  }
-
-  likeAdd(res) {
-    this._btnCardLike.classList.add("element__button-like_active");
-    this._likesCounter.textContent = res.likes.length;
-  }
-
-  likeDel(res) {
-    this._btnCardLike.classList.remove("element__button-like_active");
-    this._likesCounter.textContent = res.likes.length;
-    this._zeroLike();
-  }
-
-  _zeroLike() {
-    if (this._likesCounter.textContent === "0") {
-      this._likesCounter.textContent = "";
     }
   }
 

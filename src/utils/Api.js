@@ -1,32 +1,36 @@
 export default class Api {
-  constructor() {
+  constructor(mainUrl) {
     this._authorization = "7185bb30-8f87-45c0-b11e-99f8eecf1653";
-    this._mainUrl = "https://mesto.nomoreparties.co/v1/cohort-75/";
+    this._mainUrl = mainUrl;
   }
 
   _sendRequest(url, options) {
-    return fetch(url, options)
-      .then((response) => {
-        if (response.ok) {
-          return response.json();
-        }
-        throw new Error("Что-то пошло не так...");
-      })
-      .catch((error) => {
-        console.log(`Alarm! ${error}`);
-      });
+    return fetch(url, options).then((response) => {
+      if (response.ok) {
+        return response.json();
+      }
+      throw new Error("Что-то пошло не так...");
+    });
   }
 
-  getInfo(url) {
-    return this._sendRequest(`${this._mainUrl}${url}`, {
+  getInfo() {
+    return this._sendRequest(`${this._mainUrl}users/me`, {
       headers: {
         authorization: this._authorization,
       },
     });
   }
 
-  setNewCard(url, inputs) {
-    return this._sendRequest(`${this._mainUrl}${url}`, {
+  getInfoCards() {
+    return this._sendRequest(`${this._mainUrl}cards`, {
+      headers: {
+        authorization: this._authorization,
+      },
+    });
+  }
+
+  setNewCard(inputs) {
+    return this._sendRequest(`${this._mainUrl}cards`, {
       method: "POST",
       headers: {
         authorization: this._authorization,
@@ -39,8 +43,8 @@ export default class Api {
     });
   }
 
-  setUserData(url, inputs) {
-    return this._sendRequest(`${this._mainUrl}${url}`, {
+  setUserData(inputs) {
+    return this._sendRequest(`${this._mainUrl}users/me`, {
       method: "PATCH",
       headers: {
         authorization: this._authorization,
@@ -53,8 +57,8 @@ export default class Api {
     });
   }
 
-  setUserAvatar(url, inputAvatar) {
-    return this._sendRequest(`${this._mainUrl}${url}`, {
+  setUserAvatar(inputAvatar) {
+    return this._sendRequest(`${this._mainUrl}users/me/avatar`, {
       method: "PATCH",
       headers: {
         authorization: this._authorization,
