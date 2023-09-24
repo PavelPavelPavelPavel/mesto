@@ -8,7 +8,7 @@ export default class PopupWithConfirm extends Popup {
 
   setEventListeners() {
     super.setEventListeners();
-    this._btnSubmit.addEventListener("click", () => this._toAccept());
+    this._btnSubmit.addEventListener("click", () => this.close());
   }
 
   open(id) {
@@ -20,8 +20,8 @@ export default class PopupWithConfirm extends Popup {
     this._callBack = id;
   }
 
-  _toAccept() {
-    this._popup.classList.remove(this._openingSelector);
+  close() {
+    super.close();
     this._callBack(this.id);
   }
 }

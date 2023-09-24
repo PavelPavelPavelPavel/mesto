@@ -102,14 +102,7 @@ function createCard(arr) {
       },
       handleCardDel: () => {
         deleteCardConfirmPopup.toAcceptCallBack((id) => {
-          api
-            .deleteResponse(id)
-            .then(() => {
-              card.removeCard();
-            })
-            .catch((error) => {
-              console.log(`Alarm! ${error}`);
-            });
+          handleFormCardDel(id, card.removeCard());
         });
       },
     },
@@ -153,6 +146,7 @@ function handleFormAvatarSubmit(input) {
     .then((res) => {
       console.log(res);
       userInfo.setUserAvatar(res);
+      avatarForm.close();
     })
     .catch((error) => {
       console.log(`Alarm! ${error}`);
@@ -160,7 +154,18 @@ function handleFormAvatarSubmit(input) {
     .finally(() => {
       avatarForm.resetBtnSubmit("Сохранить");
     });
-  avatarForm.close();
+}
+
+function handleFormCardDel(id, cardRemove) {
+  api
+    .deleteResponse(id)
+    .then(() => {
+      cardRemove();
+      deleteCardConfirmPopup.close();
+    })
+    .catch((error) => {
+      console.log(`Alarm! ${error}`);
+    });
 }
 
 function handleFormProfileSubmit(inputs) {
@@ -168,6 +173,7 @@ function handleFormProfileSubmit(inputs) {
     .setUserData(inputs)
     .then((res) => {
       userInfo.setUserInfo(res.name, res.about);
+      profileForm.close();
     })
     .catch((error) => {
       console.log(`Alarm! ${error}`);
@@ -175,7 +181,6 @@ function handleFormProfileSubmit(inputs) {
     .finally(() => {
       profileForm.resetBtnSubmit("Сохранить");
     });
-  profileForm.close();
 }
 
 function handleFormCardSubmit(inputs) {
@@ -184,6 +189,7 @@ function handleFormCardSubmit(inputs) {
     .then((data) => {
       const newCard = createCard(data);
       cardSection.addItem(newCard);
+      cardForm.close();
     })
     .catch((error) => {
       console.log(`Alarm! ${error}`);
@@ -191,7 +197,6 @@ function handleFormCardSubmit(inputs) {
     .finally(() => {
       cardForm.resetBtnSubmit("Сохранить");
     });
-  cardForm.close();
 }
 
 profileForm.setEventListeners();

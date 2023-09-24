@@ -40,7 +40,6 @@ export default class Card {
       ".element__button-delete"
     );
     this._likesCounter = this._element.querySelector(".element__like-counter");
-    //this._likesCounter.textContent = this._likes.length;
     this._cardImg.src = this._link;
     this._cardImg.alt = this._name;
     this._btnPopupImgOpen = this._element.querySelector(".element__link");
