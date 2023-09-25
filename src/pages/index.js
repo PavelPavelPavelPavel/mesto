@@ -103,8 +103,8 @@ function createCard(arr) {
           api
             .deleteResponse(id)
             .then(() => {
-              deleteCardConfirmPopup.close();
               card.removeCard();
+              deleteCardConfirmPopup.close();
             })
             .catch((error) => {
               console.log(`Alarm! ${error}`);
