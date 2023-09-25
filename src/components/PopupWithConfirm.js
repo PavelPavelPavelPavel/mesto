@@ -6,11 +6,6 @@ export default class PopupWithConfirm extends Popup {
     this._btnSubmit = document.querySelector(btn);
   }
 
-  setEventListeners() {
-    super.setEventListeners();
-    this._btnSubmit.addEventListener("click", () => this.close());
-  }
-
   open(id) {
     super.open();
     this.id = id;
@@ -20,8 +15,10 @@ export default class PopupWithConfirm extends Popup {
     this._callBack = id;
   }
 
-  close() {
-    super.close();
-    this._callBack(this.id);
+  setEventListeners() {
+    super.setEventListeners();
+    this._btnSubmit.addEventListener("click", () => {
+      this._callBack(this.id);
+    });
   }
 }

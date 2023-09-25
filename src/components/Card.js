@@ -21,7 +21,6 @@ export default class Card {
     this._handleImageClick = handleImageClick;
     this._handleLikeAdd = handleLikeAdd;
     this._handleLikeDel = handleLikeDel;
-    this._handleCardDel = handleCardDel;
     this._handleOpenPopupCardDelete = handleOpenPopupCardDelete;
   }
 
@@ -80,10 +79,6 @@ export default class Card {
     this._element = null;
   }
 
-  _deleteCardButton() {
-    this._handleCardDel(this);
-  }
-
   _checkLike() {
     return this._likes.some((item) => {
       return item._id == this._myId;
@@ -106,7 +101,6 @@ export default class Card {
     });
 
     this._btnCardDelete.addEventListener("click", () => {
-      this._deleteCardButton();
       this._handleOpenPopupCardDelete(this._cardId);
     });
 

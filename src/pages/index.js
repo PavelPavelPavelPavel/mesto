@@ -99,10 +99,17 @@ function createCard(arr) {
       },
       handleOpenPopupCardDelete: (id) => {
         openPopupConfirmDelete(id);
-      },
-      handleCardDel: () => {
         deleteCardConfirmPopup.toAcceptCallBack((id) => {
-          handleFormCardDel(id, card.removeCard());
+          api
+            .deleteResponse(id)
+            .then(() => {
+              handleFormCardDel(() => {
+                card.removeCard();
+              });
+            })
+            .catch((error) => {
+              console.log(`Alarm! ${error}`);
+            });
         });
       },
     },
@@ -144,7 +151,6 @@ function handleFormAvatarSubmit(input) {
   api
     .setUserAvatar(input.link)
     .then((res) => {
-      console.log(res);
       userInfo.setUserAvatar(res);
       avatarForm.close();
     })
@@ -156,16 +162,9 @@ function handleFormAvatarSubmit(input) {
     });
 }
 
-function handleFormCardDel(id, cardRemove) {
-  api
-    .deleteResponse(id)
-    .then(() => {
-      cardRemove();
-      deleteCardConfirmPopup.close();
-    })
-    .catch((error) => {
-      console.log(`Alarm! ${error}`);
-    });
+function handleFormCardDel(cardRemove) {
+  cardRemove();
+  deleteCardConfirmPopup.close();
 }
 
 function handleFormProfileSubmit(inputs) {
