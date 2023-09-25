@@ -97,15 +97,14 @@ function createCard(arr) {
             console.log(`Alarm! ${error}`);
           });
       },
-      handleOpenPopupCardDelete: (id) => {
+      handlePopupCardDelete: (id) => {
         openPopupConfirmDelete(id);
         deleteCardConfirmPopup.toAcceptCallBack((id) => {
           api
             .deleteResponse(id)
             .then(() => {
-              handleFormCardDel(() => {
-                card.removeCard();
-              });
+              deleteCardConfirmPopup.close();
+              card.removeCard();
             })
             .catch((error) => {
               console.log(`Alarm! ${error}`);
@@ -160,11 +159,6 @@ function handleFormAvatarSubmit(input) {
     .finally(() => {
       avatarForm.resetBtnSubmit("Сохранить");
     });
-}
-
-function handleFormCardDel(cardRemove) {
-  cardRemove();
-  deleteCardConfirmPopup.close();
 }
 
 function handleFormProfileSubmit(inputs) {

@@ -5,8 +5,7 @@ export default class Card {
       handleImageClick,
       handleLikeAdd,
       handleLikeDel,
-      handleOpenPopupCardDelete,
-      handleCardDel,
+      handlePopupCardDelete,
     },
     templateSelector,
     myId
@@ -21,7 +20,7 @@ export default class Card {
     this._handleImageClick = handleImageClick;
     this._handleLikeAdd = handleLikeAdd;
     this._handleLikeDel = handleLikeDel;
-    this._handleOpenPopupCardDelete = handleOpenPopupCardDelete;
+    this._handlePopupCardDelete = handlePopupCardDelete;
   }
 
   _getTemplate() {
@@ -101,7 +100,7 @@ export default class Card {
     });
 
     this._btnCardDelete.addEventListener("click", () => {
-      this._handleOpenPopupCardDelete(this._cardId);
+      this._handlePopupCardDelete(this._cardId);
     });
 
     this._btnPopupImgOpen.addEventListener("click", () => {
