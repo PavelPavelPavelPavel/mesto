@@ -13,9 +13,6 @@ const btnOpenAvatar = document.querySelector(".profile__avatar-btn");
 const formCard = document.querySelector(".popup__input-card");
 const formProfile = document.querySelector(".popup__input-profile");
 const formAvatar = document.querySelector(".popup__input-avatar");
-const formConfirmDelCard = document.querySelector(
-  ".popup__form_edit_delete-card"
-);
 const nameInput = document.querySelector(".popup__value_field_name");
 const jobInput = document.querySelector(".popup__value_field_work");
 const userAvatar = document.querySelector(".profile__avatar-img");
@@ -30,7 +27,6 @@ export {
   formCard,
   formProfile,
   formAvatar,
-  formConfirmDelCard,
   nameInput,
   jobInput,
   userAvatar,
